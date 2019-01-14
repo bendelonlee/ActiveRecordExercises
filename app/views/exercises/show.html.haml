@@ -22,8 +22,8 @@
   - if @correct_query == true
     %p Success!
 
-- if @security_errors
-  - @security_errors.each do |sec_error|
+- if @solution_errors
+  - @solution_errors.each do |sec_error|
     %p
       = sec_error
 

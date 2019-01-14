@@ -16,6 +16,25 @@ describe 'excercise show page' do
     expect(page).to have_content("Your Query Returned:")
     expect(page).to have_content("Success!")
   end
+  describe 'gives an error message if the code generates an error' do
+    before(:each) do
+      exercise = create(:exercise)
+      create_list(:item, 2)
+      visit exercise_path(exercise)
+    end
+    scenario 'a basic syntax error' do
+      fill_in :solution_solution_code, with: "Item.where(98: price)"
+      @error = "syntax error, unexpected ':', expecting ')' Item.where(98: price)"
+    end
+    scenario 'a column that does not exist' do
+      fill_in :solution_solution_code, with: "Item.where(dragon: 'puff')"
+      @error = "ERROR: column items.dragon does not exist"
+    end
+    after(:each) do
+      click_on "execute"
+      expect(page).to have_content(@error)
+    end
+  end
   describe 'it keeps unpermitted code from running' do
     before(:each) do
       exercise = create(:exercise)
@@ -43,6 +62,16 @@ describe 'excercise show page' do
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
     xit "such as `DROP TABLE items` inside of a string passed into sql" do
+#       Not sure how to write a hack that I need to worry about. PG seems to already be looking out for this
+#       in rails console, when I enter:
+#             Item.where("items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle'")
+#       the sql generated is:
+#             SELECT  "items".* FROM "items" WHERE (items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle') LIMIT $1
+#       and I get this error:
+#             ActiveRecord::StatementInvalid: PG::SyntaxError: ERROR:  cannot insert multiple commands into a prepared statement
+#       I get the same error when I try to insert a sneaky DROP TABLE like so:
+#             where("items.name='candle'); DROP TABLE items; SELECT items.name FROM items WHERE (items.name='candle'")
+#       And the table is not dropped
       fill_in :solution_solution_code, with: "Item.where('items.name=\"candle\"')"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end

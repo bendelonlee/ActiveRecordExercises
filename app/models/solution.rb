@@ -1,4 +1,5 @@
 class Solution < ApplicationRecord
+  attr_reader :result
   ALLOWED_KEYWORDS = %w(all first find find_by joins last left_outer_joins order offset unscope where) +
                      %w(Item)
 
@@ -7,7 +8,7 @@ class Solution < ApplicationRecord
     if unpermitted.empty?
       return true
     else
-      self.errors.add(:security, ": Only activerecord queries will be executed : #{unpermitted.map{ |m| "`#{m}`"}.join(", ")} not permitted")
+      errors.add(:security, ": Only activerecord queries will be executed : #{unpermitted.map{ |m| "`#{m}`"}.join(", ")} not permitted")
       return false
     end
   end
@@ -20,5 +21,15 @@ class Solution < ApplicationRecord
     ALLOWED_KEYWORDS.reduce(solution_code) do |code, kw|
       code.gsub(/(?<=#{kw})\(.*?\)/, "")
     end.split(/[^\w]+/)
+  end
+
+
+  def eval!
+    begin
+      @result = eval(solution_code).as_json
+    rescue Exception => exc
+      errors.add(:Exception, exc.message)
+      return false
+    end
   end
 end
