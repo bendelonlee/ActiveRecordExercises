@@ -6,17 +6,27 @@
     = @exercise.instruction
 
 #guest-solution
-  = form_tag "submit" do
-    = label_tag :solution
-    = text_area_tag :solution
-    = submit_tag "execute"
+  = form_for @form_path do |f|
+    = f.label :solution_code
+    = f.text_area :solution_code
+    = f.submit "execute"
+
+- if @expected_results
+  %h4
+    Expected Results:
+  = @expected_results
+
+  %h4
+    Your Query Returned:
+  = @actual_results
+  - if @correct_query == true
+    %p Success!
 
 
 %p
   Answers and Discussion
   %button{onclick: "toggleSolution()", id: "toggle-button"}
     show
-
 
 #answers-and-discussion
   %p
