@@ -6,11 +6,17 @@ describe 'excercise show page' do
     expect(page).to have_content(exercise.name)
     expect(page).to have_content(exercise.instruction)
   end
-  xit 'when you execute your solution, you see your results next to the results returned by the correct solution' do
+  it 'when you execute your solution, you see your results next to the results returned by the correct solution' do
     exercise = create(:exercise)
+    Item.establish_connection DB_EXOB
+    item = Item.create(name: "candle", price: "100")
+    # item = create_list(:item, 3)
     visit exercise_path(exercise)
-    expect(page).to have_content(exercise.name)
-    expect(page).to have_content(exercise.instruction)
+    fill_in "solution", with: "Item.all"
+    click_on "execute"
+    expect(page).to have_content("Expected Results:")
+    expect(page).to have_content("Your Query Returned:")
+    expect(page).to have_content("Success!")
   end
   xit 'hides the solution. But when you press the "show solution" button it shows the solution. You can then press "hide solution" which hides the solution' do
     #got the functionality working with js, not sure how to test
