@@ -22,6 +22,11 @@
   - if @correct_query == true
     %p Success!
 
+- if @security_errors
+  - @security_errors.each do |sec_error|
+    %p
+      = sec_error
+
 
 %p
   Answers and Discussion
