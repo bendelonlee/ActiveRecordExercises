@@ -3,4 +3,7 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(params[:id])
     @form_path = [@exercise, Solution.new]
   end
+  def index
+    @exercises = Exercise.all
+  end
 end

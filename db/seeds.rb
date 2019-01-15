@@ -10,4 +10,6 @@ include FactoryBot::Syntax::Methods
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Exercise.destroy_all
-create(:exercise)
+Exercise.create( {name: "Retrieve all records from the database",
+                  instructions: "Write a method that returns all records of the model ."
+})
