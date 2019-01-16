@@ -10,7 +10,7 @@ describe 'excercise show page' do
     exercise = create(:exercise)
     create_list(:item, 2)
     visit exercise_path(exercise)
-    fill_in :solution_solution_code, with: "Item.all"
+    fill_in :solution_solution_code, with: "Product.all"
     click_on "execute"
     expect(page).to have_content("Expected Results:")
     expect(page).to have_content("Your Query Returned:")
@@ -23,11 +23,11 @@ describe 'excercise show page' do
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
-      fill_in :solution_solution_code, with: "Item.where(98: price)"
-      @error = "syntax error, unexpected ':', expecting ')' Item.where(98: price)"
+      fill_in :solution_solution_code, with: "Product.where(98: price)"
+      @error = "syntax error, unexpected ':', expecting ')' Product.where(98: price)"
     end
     scenario 'a column that does not exist' do
-      fill_in :solution_solution_code, with: "Item.where(dragon: 'puff')"
+      fill_in :solution_solution_code, with: "Product.where(dragon: 'puff')"
       @error = "ERROR: column items.dragon does not exist"
     end
     after(:each) do
@@ -54,17 +54,17 @@ describe 'excercise show page' do
       @error = "Only activerecord queries will be executed : `binding`, `pry` not permitted"
     end
     xit "such as `create`" do
-      fill_in :solution_solution_code, with: "Item.create(name: 'Mr. Robot')"
+      fill_in :solution_solution_code, with: "Product.create(name: 'Mr. Robot')"
       @error = "Only activerecord queries will be executed : `create` not permitted"
     end
     scenario "such as `destroy_all`" do
-      fill_in :solution_solution_code, with: "Item.destroy_all"
+      fill_in :solution_solution_code, with: "Product.destroy_all"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
     xit "such as `DROP TABLE items` inside of a string passed into sql" do
 #       Not sure how to write a hack that I need to worry about. PG seems to already be looking out for this
 #       in rails console, when I enter:
-#             Item.where("items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle'")
+#             Product.where("items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle'")
 #       the sql generated is:
 #             SELECT  "items".* FROM "items" WHERE (items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle') LIMIT $1
 #       and I get this error:
@@ -72,7 +72,7 @@ describe 'excercise show page' do
 #       I get the same error when I try to insert a sneaky DROP TABLE like so:
 #             where("items.name='candle'); DROP TABLE items; SELECT items.name FROM items WHERE (items.name='candle'")
 #       And the table is not dropped
-      fill_in :solution_solution_code, with: "Item.where('items.name=\"candle\"')"
+      fill_in :solution_solution_code, with: "Product.where('items.name=\"candle\"')"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
     after(:each) do

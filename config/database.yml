@@ -83,3 +83,15 @@ production:
   database: ActiveRecordExercisesApp_production
   username: ActiveRecordExercisesApp
   password: <%= ENV['ACTIVERECORDEXERCISESAPP_DATABASE_PASSWORD'] %>
+
+catalog_development:
+  <<: *default
+  database: catalog_development
+
+catalog_test:
+  <<: *default
+  database: catalog_test
+
+catalog_production:
+  <<: *default
+  url: <%= ENV['CATALOG_DATABASE_URL'] %>

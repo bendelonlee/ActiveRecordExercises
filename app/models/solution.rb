@@ -1,7 +1,7 @@
 class Solution < ApplicationRecord
   attr_reader :result
   ALLOWED_KEYWORDS = %w(all first find find_by joins last left_outer_joins order offset unscope where) +
-                     %w(Item)
+                     %w(Product)
 
   def safe?
     unpermitted = unpermitted_keywords
