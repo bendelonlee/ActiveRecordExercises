@@ -3,7 +3,6 @@ class SolutionsController < ApplicationController
     solution = Solution.new(solution_params)
     @exercise = Exercise.find(params[:exercise_id])
     @form_path = [@exercise, Solution.new]
-
     if solution.safe? && solution.eval!
       @actual_results = solution.result
       @expected_results = eval(@exercise.solution).as_json

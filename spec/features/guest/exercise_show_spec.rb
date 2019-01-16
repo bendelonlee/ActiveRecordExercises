@@ -8,7 +8,7 @@ describe 'excercise show page' do
   end
   it 'when you execute your solution, you see your results next to the results returned by the correct solution' do
     exercise = create(:exercise)
-    create_list(:item, 2)
+    create_list(:product, 2)
     visit exercise_path(exercise)
     fill_in :solution_solution_code, with: "Product.all"
     click_on "execute"
@@ -19,7 +19,7 @@ describe 'excercise show page' do
   describe 'gives an error message if the code generates an error' do
     before(:each) do
       exercise = create(:exercise)
-      create_list(:item, 2)
+      create_list(:product, 2)
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
@@ -28,7 +28,7 @@ describe 'excercise show page' do
     end
     scenario 'a column that does not exist' do
       fill_in :solution_solution_code, with: "Product.where(dragon: 'puff')"
-      @error = "ERROR: column items.dragon does not exist"
+      @error = "ERROR: column products.dragon does not exist"
     end
     after(:each) do
       click_on "execute"
@@ -38,7 +38,7 @@ describe 'excercise show page' do
   describe 'it keeps unpermitted code from running' do
     before(:each) do
       exercise = create(:exercise)
-      create_list(:item, 2)
+      create_list(:product, 2)
       visit exercise_path(exercise)
     end
     it "such as `exit`" do
@@ -61,18 +61,18 @@ describe 'excercise show page' do
       fill_in :solution_solution_code, with: "Product.destroy_all"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
-    xit "such as `DROP TABLE items` inside of a string passed into sql" do
+    xit "such as `DROP TABLE products` inside of a string passed into sql" do
 #       Not sure how to write a hack that I need to worry about. PG seems to already be looking out for this
 #       in rails console, when I enter:
-#             Product.where("items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle'")
+#             Product.where("products.name='candle'); SELECT products.name FROM products WHERE (products.name='candle'")
 #       the sql generated is:
-#             SELECT  "items".* FROM "items" WHERE (items.name='candle'); SELECT items.name FROM items WHERE (items.name='candle') LIMIT $1
+#             SELECT  "products".* FROM "products" WHERE (products.name='candle'); SELECT products.name FROM products WHERE (products.name='candle') LIMIT $1
 #       and I get this error:
 #             ActiveRecord::StatementInvalid: PG::SyntaxError: ERROR:  cannot insert multiple commands into a prepared statement
 #       I get the same error when I try to insert a sneaky DROP TABLE like so:
-#             where("items.name='candle'); DROP TABLE items; SELECT items.name FROM items WHERE (items.name='candle'")
+#             where("products.name='candle'); DROP TABLE products; SELECT products.name FROM products WHERE (products.name='candle'")
 #       And the table is not dropped
-      fill_in :solution_solution_code, with: "Product.where('items.name=\"candle\"')"
+      fill_in :solution_solution_code, with: "Product.where('products.name=\"candle\"')"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
     after(:each) do

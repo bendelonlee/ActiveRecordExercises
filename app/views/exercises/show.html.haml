@@ -23,10 +23,9 @@
     %p Success!
 
 - if @solution_errors
-  - @solution_errors.each do |sec_error|
+  - @solution_errors.each do |error|
     %p
-      = sec_error
-
+      = error
 
 %p
   Answers and Discussion
@@ -36,5 +35,3 @@
 #answers-and-discussion
   %p
     = @exercise.solution
-
-= javascript_include_tag('exercise_show.js')

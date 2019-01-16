@@ -9,7 +9,10 @@ include FactoryBot::Syntax::Methods
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Product.create(name: "Time Machine", price: 199999)
+
 Exercise.destroy_all
-Exercise.create( {name: "Retrieve all records from the database",
-                  instructions: "Write a method that returns all records of the model ."
+Exercise.create( {name: "All",
+                  instruction: "Write a method that returns all records of the model Product.",
+                  solution: "Product.all"
 })
