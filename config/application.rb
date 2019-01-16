@@ -28,6 +28,7 @@ module ActiveRecordExercises
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.autoload_paths += Dir[Rails.root.join("app", "models", "{*/}")]
-    
+    # config.assets.precompile += ["codemirror*", "codemirror/**/*"]
+
   end
 end
