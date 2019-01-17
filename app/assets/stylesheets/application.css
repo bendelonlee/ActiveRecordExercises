@@ -13,10 +13,20 @@
  *= require_tree .
  *= require_self
  *= require codemirror
+ *= require codemirror/themes/blackboard
  */
  body {
    font-family: monospace;
  }
+
+.CodeMirror {
+  height: 200px;
+}
+
+.readOnlyCode {
+  display: inline;
+}
+
  #answers-and-discussion {
    display:none;
  }

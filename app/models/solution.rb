@@ -26,7 +26,8 @@ class Solution < ApplicationRecord
 
   def eval!
     begin
-      @result = eval(solution_code).as_json
+      @result = eval(solution_code)
+      @result.as_json
     rescue Exception => exc
       errors.add(:Exception, exc.message)
       return false

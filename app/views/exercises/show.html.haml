@@ -5,48 +5,31 @@
   %p
     = @exercise.instruction
 
-%textarea#code{:name => "code"}
-  :preserve
-    // This is a four column grid
-    // Assign class names to the row element to achieve specificity
-    .row.grid-haml-example.clearfix
-      .large-4.columns
-        %span 1 / 3
-      .large-4.columns
-        %span 1 / 3
-        .row
-          .large-6.columns
-            Nested Column
-          .large-6.columns
-            Nested Column
-      .large-4.columns
-        %span 1 / 3
-
-
 #guest-solution
   = form_for @form_path do |f|
     = f.label :solution_code
-    = f.text_area :solution_code, name: "code", value: "Product.all"
-    = f.submit "execute"
+    = f.text_area :solution_code
+    = f.submit :execute, onclick: "addCodeToTextArea()"
 
 - if @expected_results
+  
   %h4
     Expected Results:
-  = @expected_results
+  %textarea{class: :readOnlyCode}
+    = @expected_results
 
   %h4
     Your Query Returned:
-  = @actual_results
-  - if @correct_query == true
-    %p Success!
+  %textarea{class: :readOnlyCode}
+    = @actual_results
+
+- if @correct_query == true
+  %p Success!
 
 - if @solution_errors
   - @solution_errors.each do |error|
     %p
       = error
-
-%button{onclick: "addCodeToTextArea()"}
-  add the code
 
 %p
   Answers and Discussion

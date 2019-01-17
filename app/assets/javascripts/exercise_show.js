@@ -17,16 +17,24 @@ window.onload = function () {
   let textArea = document.getElementById('solution_solution_code')
   editableCodeMirror = CodeMirror.fromTextArea(textArea, {
       mode: "ruby",
-      theme: "default",
+      theme: "blackboard",
       lineNumbers: true
   });
-  editableCodeMirror.on("change", function(cm, change) {
-    cm.save;
+  editableCodeMirror.setSize(800, 100);
+
+
+  $(".readOnlyCode").each(function() {
+    cm = CodeMirror.fromTextArea($(this).get(0), {
+      mode: "ruby",
+      theme: "blackboard",
+      lineNumbers: false,
+      readOnly: true
+    });
+    cm.setSize(350, 'auto');
   });
 
 };
 
 function addCodeToTextArea() {
-    debugger;
-    editableCodeMirror.save
+  editableCodeMirror.save;
 };
