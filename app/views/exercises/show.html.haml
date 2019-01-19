@@ -12,16 +12,18 @@
     = f.submit :execute, onclick: "addCodeToTextArea()"
 
 - if @expected_results
-  
-  %h4
-    Expected Results:
-  %textarea{class: :readOnlyCode}
-    = @expected_results
+  .results
+    #expected
+      %h4
+        Expected Results:
+      %textarea{class: :readOnlyCode}
+        = @expected_results
 
-  %h4
-    Your Query Returned:
-  %textarea{class: :readOnlyCode}
-    = @actual_results
+    #actual
+      %h4
+        Your Query Returned:
+      %textarea{class: :readOnlyCode}
+        = @actual_results
 
 - if @correct_query == true
   %p Success!

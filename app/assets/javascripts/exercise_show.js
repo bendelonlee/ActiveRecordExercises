@@ -17,7 +17,7 @@ window.onload = function () {
   let textArea = document.getElementById('solution_solution_code')
   editableCodeMirror = CodeMirror.fromTextArea(textArea, {
       mode: "ruby",
-      theme: "blackboard",
+      theme: "mdn-like",
       lineNumbers: true
   });
   editableCodeMirror.setSize(800, 100);
@@ -26,7 +26,7 @@ window.onload = function () {
   $(".readOnlyCode").each(function() {
     cm = CodeMirror.fromTextArea($(this).get(0), {
       mode: "ruby",
-      theme: "blackboard",
+      theme: "mdn-like",
       lineNumbers: false,
       readOnly: true
     });
