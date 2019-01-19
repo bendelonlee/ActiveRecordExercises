@@ -12,7 +12,22 @@ describe 'excercise show page' do
     visit exercise_path(exercise)
     fill_in :solution_solution_code, with: "Product.all"
     click_on "execute"
-    expect(page).to have_content("Expected Results:")
+    within "#expected" do
+      expect(page).to have_content("Expected Results:")
+#       expect(page).to have_content(/
+#       <ActiveRecord::Relation [
+# <Product id: 498,
+#  name: "MyString",
+#  price: 1,
+#  created_at: "2019-01-19 19:20:11",
+#  updated_at: "2019-01-19 19:20:11">,
+#
+# <Product id: 499,
+#  name: "MyString",
+#  price: 1,
+#  created_at: "2019-01-19 19:20:11",
+#  updated_at: "2019-01-19 19:20:11">]>/)
+    end
     expect(page).to have_content("Your Query Returned:")
     expect(page).to have_content("Success!")
   end

@@ -9,6 +9,7 @@ gem 'haml'
 gem 'multiverse'
 gem 'codemirror-rails'
 gem 'jquery-rails'
+gem 'draper'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6', '>= 5.1.6.1'
 # Use postgresql as the database for Active Record
