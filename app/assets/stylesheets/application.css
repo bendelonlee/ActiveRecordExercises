@@ -19,7 +19,6 @@
    font-family: monospace;
  }
  table {
-   font-family: arial, sans-serif;
    border-collapse: collapse;
    width: 100%;
  }
@@ -33,7 +32,7 @@
  tr:nth-child(even) {
    background-color: #dddddd;
  }
- 
+
 .CodeMirror {
   height: 200px;
 }

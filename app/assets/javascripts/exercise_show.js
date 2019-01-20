@@ -4,6 +4,7 @@ function toggleSolution() {
   if (s.style.display === "none") {
     s.style.display = "block";
     b.innerHTML = "hide";
+    renderReadOnly()
   } else {
     s.style.display = "none";
     b.innerHTML = "show";
@@ -23,6 +24,10 @@ window.onload = function () {
   editableCodeMirror.setSize(800, 100);
 
 
+
+};
+
+function renderReadOnly() {
   $(".readOnlyCode").each(function() {
     cm = CodeMirror.fromTextArea($(this).get(0), {
       mode: "ruby",
@@ -32,7 +37,6 @@ window.onload = function () {
     });
     cm.setSize(350, 'auto');
   });
-
 };
 
 function addCodeToTextArea() {
