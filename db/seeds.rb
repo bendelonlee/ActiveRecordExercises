@@ -8,11 +8,31 @@ include FactoryBot::Syntax::Methods
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-Product.create(name: "Time Machine", price: 199999)
-
-Exercise.destroy_all
-Exercise.create( {name: "All",
-                  instruction: "Write a method that returns all records of the model Product.",
-                  solution: "Product.all"
-})
+Student.destroy_all
+student_names =
+[
+'Penelope',
+'Peter',
+'Pepe',
+'Parth',
+'Priscilla',
+'Pablo',
+'Puja',
+'Patricia',
+'Piper',
+'Paula',
+'Pamela',
+'Paige',
+'Peggy',
+'Pedro',
+'Phoebe',
+'Pajak',
+'Parker',
+'Priyal',
+'Paxton',
+'Patrick'
+]
+students = student_names.map.with_index do |name, i|
+  {name: name, id: i + 1}
+end
+require 'pry'; binding.pry

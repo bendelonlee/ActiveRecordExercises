@@ -95,3 +95,15 @@ catalog_test:
 catalog_production:
   <<: *default
   url: <%= ENV['CATALOG_DATABASE_URL'] %>
+
+school_development:
+  <<: *default
+  database: school_development
+
+school_test:
+  <<: *default
+  database: school_test
+
+school_production:
+  <<: *default
+  url: <%= ENV['SCHOOL_DATABASE_URL'] %>

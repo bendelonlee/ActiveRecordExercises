@@ -8,21 +8,21 @@ describe 'excercise show page' do
   end
   it 'when you execute your solution, you see your results next to the results returned by the correct solution' do
     exercise = create(:exercise)
-    create_list(:product, 2)
+    create_list(:student, 2)
     visit exercise_path(exercise)
-    fill_in :solution_solution_code, with: "Product.all"
+    fill_in :solution_solution_code, with: "Student.all"
     click_on "execute"
     within "#expected" do
       expect(page).to have_content("Expected Results:")
 #       expect(page).to have_content(/
 #       <ActiveRecord::Relation [
-# <Product id: 498,
+# <Student id: 498,
 #  name: "MyString",
 #  price: 1,
 #  created_at: "2019-01-19 19:20:11",
 #  updated_at: "2019-01-19 19:20:11">,
 #
-# <Product id: 499,
+# <Student id: 499,
 #  name: "MyString",
 #  price: 1,
 #  created_at: "2019-01-19 19:20:11",
@@ -34,16 +34,16 @@ describe 'excercise show page' do
   describe 'gives an error message if the code generates an error' do
     before(:each) do
       exercise = create(:exercise)
-      create_list(:product, 2)
+      create_list(:student, 2)
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
-      fill_in :solution_solution_code, with: "Product.where(98: price)"
-      @error = "syntax error, unexpected ':', expecting ')' Product.where(98: price)"
+      fill_in :solution_solution_code, with: "Student.where(98: price)"
+      @error = "syntax error, unexpected ':', expecting ')' Student.where(98: price)"
     end
     scenario 'a column that does not exist' do
-      fill_in :solution_solution_code, with: "Product.where(dragon: 'puff')"
-      @error = "ERROR: column products.dragon does not exist"
+      fill_in :solution_solution_code, with: "Student.where(dragon: 'puff')"
+      @error = "ERROR: column students.dragon does not exist"
     end
     after(:each) do
       click_on "execute"
@@ -53,7 +53,7 @@ describe 'excercise show page' do
   describe 'it keeps unpermitted code from running' do
     before(:each) do
       exercise = create(:exercise)
-      create_list(:product, 2)
+      create_list(:student, 2)
       visit exercise_path(exercise)
     end
     it "such as `exit`" do
@@ -69,25 +69,25 @@ describe 'excercise show page' do
       @error = "Only activerecord queries will be executed : `binding`, `pry` not permitted"
     end
     xit "such as `create`" do
-      fill_in :solution_solution_code, with: "Product.create(name: 'Mr. Robot')"
+      fill_in :solution_solution_code, with: "Student.create(name: 'Mr. Robot')"
       @error = "Only activerecord queries will be executed : `create` not permitted"
     end
     scenario "such as `destroy_all`" do
-      fill_in :solution_solution_code, with: "Product.destroy_all"
+      fill_in :solution_solution_code, with: "Student.destroy_all"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
-    xit "such as `DROP TABLE products` inside of a string passed into sql" do
+    xit "such as `DROP TABLE students` inside of a string passed into sql" do
 #       Not sure how to write a hack that I need to worry about. PG seems to already be looking out for this
 #       in rails console, when I enter:
-#             Product.where("products.name='candle'); SELECT products.name FROM products WHERE (products.name='candle'")
+#             Student.where("students.name='candle'); SELECT students.name FROM students WHERE (students.name='candle'")
 #       the sql generated is:
-#             SELECT  "products".* FROM "products" WHERE (products.name='candle'); SELECT products.name FROM products WHERE (products.name='candle') LIMIT $1
+#             SELECT  "students".* FROM "students" WHERE (students.name='candle'); SELECT students.name FROM students WHERE (students.name='candle') LIMIT $1
 #       and I get this error:
 #             ActiveRecord::StatementInvalid: PG::SyntaxError: ERROR:  cannot insert multiple commands into a prepared statement
 #       I get the same error when I try to insert a sneaky DROP TABLE like so:
-#             where("products.name='candle'); DROP TABLE products; SELECT products.name FROM products WHERE (products.name='candle'")
+#             where("students.name='candle'); DROP TABLE students; SELECT students.name FROM students WHERE (students.name='candle'")
 #       And the table is not dropped
-      fill_in :solution_solution_code, with: "Product.where('products.name=\"candle\"')"
+      fill_in :solution_solution_code, with: "Student.where('students.name=\"candle\"')"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
     after(:each) do
