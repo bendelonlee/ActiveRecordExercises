@@ -43,7 +43,7 @@
 
 .results {
   display: flex;
-
+  justify-content: space-between;
 }
 
  #answers-and-discussion {

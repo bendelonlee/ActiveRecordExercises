@@ -1,8 +1,8 @@
 class Solution < ApplicationRecord
   belongs_to :exercise
   attr_reader :result
-  ALLOWED_KEYWORDS = %w(all first find find_by joins last left_outer_joins order offset unscope where) +
-                     %w(Student)
+  ALLOWED_KEYWORDS = %w(all first find find_by group joins last left_outer_joins order offset select unscope where) +
+                     %w(Student Course Enrollment Teacher)
 
   def results?
     safe? && eval!

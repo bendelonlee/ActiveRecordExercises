@@ -8,31 +8,8 @@ include FactoryBot::Syntax::Methods
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Student.destroy_all
-student_names =
-[
-'Penelope',
-'Peter',
-'Pepe',
-'Parth',
-'Priscilla',
-'Pablo',
-'Puja',
-'Patricia',
-'Piper',
-'Paula',
-'Pamela',
-'Paige',
-'Peggy',
-'Pedro',
-'Phoebe',
-'Pajak',
-'Parker',
-'Priyal',
-'Paxton',
-'Patrick'
-]
-students = student_names.map.with_index do |name, i|
-  {name: name, id: i + 1}
-end
-require 'pry'; binding.pry
+Exercise.destroy_all
+Exercise.create!(name: "all", solution: "Course.all", instruction: "Write a query to return all Course models from the database.")
+Exercise.create!(name: "average grades",
+                solution: 'Student.select("name, avg(enrollments.grade) as average_grade").joins(:enrollments).group(:id)',
+                instruction: "Write a query to return all students names and their average grades (as an attribute called average_grade) in this column order.")
