@@ -38,16 +38,20 @@ describe 'excercise show page' do
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
-      fill_in :solution_solution_code, with: "Student.where(98: price)"
+      @solution = "Student.where(98: price)"
       @error = "syntax error, unexpected ':', expecting ')' Student.where(98: price)"
     end
     scenario 'a column that does not exist' do
-      fill_in :solution_solution_code, with: "Student.where(dragon: 'puff')"
+      @solution = "Student.where(dragon: 'puff')"
       @error = "ERROR: column students.dragon does not exist"
     end
     after(:each) do
+      fill_in :solution_solution_code, with: @solution
       click_on "execute"
       expect(page).to have_content(@error)
+      within "#solution_solution_code" do
+        expect(page).to have_content(@solution)
+      end
     end
   end
   describe 'it keeps unpermitted code from running' do
@@ -56,7 +60,7 @@ describe 'excercise show page' do
       create_list(:student, 2)
       visit exercise_path(exercise)
     end
-    it "such as `exit`" do
+    scenario "such as `exit`" do
       fill_in :solution_solution_code, with: "exit"
       @error = "Only activerecord queries will be executed : `exit` not permitted"
     end
