@@ -13,3 +13,8 @@ Exercise.create!(name: "all", solution: "Course.all", instruction: "Write a quer
 Exercise.create!(name: "average grades",
                 solution: 'Student.select("name, avg(enrollments.grade) as average_grade").joins(:enrollments).group(:id)',
                 instruction: "Write a query to return all students names and their average grades (as an attribute called average_grade) in this column order.")
+
+Exercise.create!(name: "top grades",
+                 solution: 'Student.select(:name, "AVG(enrollments.grade) AS average_grade").joins(:enrollments).group(:id).having("AVG(enrollments.grade) > (SELECT AVG(grade) FROM enrollments)")',
+                 instruction: "Write a query to return all students names and their average grades (as an attribute called average_grade) in this column order, but only for students whose average grade is above the average of all grades")
+      
