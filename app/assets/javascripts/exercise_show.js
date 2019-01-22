@@ -1,6 +1,6 @@
 function toggleSolution() {
-  var s = document.getElementById("answers-and-discussion");
-  var b = document.getElementById("toggle-button");
+  let s = document.getElementById("answers-and-discussion");
+  let b = document.getElementById("toggle-button");
   if (s.style.display === "none") {
     s.style.display = "block";
     b.innerHTML = "hide";
@@ -22,8 +22,6 @@ window.onload = function () {
       lineNumbers: true
   });
   editableCodeMirror.setSize(800, 100);
-
-
 
 };
 
