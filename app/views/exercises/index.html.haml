@@ -1,6 +1,6 @@
 %h1
   Exercises
-- @exercises.each do |exercise|
-  %ol
+%ol
+  - @exercises.each do |exercise|
     %li
       = link_to exercise.name, exercise_path(exercise)
