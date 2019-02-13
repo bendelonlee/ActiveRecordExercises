@@ -37,6 +37,12 @@
   height: 200px;
 }
 
+#drag {
+  height: 100px;
+  width: 200px;
+  background: blue;
+}
+
 .readOnlyCode {
   display: inline;
 }
@@ -46,6 +52,6 @@
   justify-content: space-between;
 }
 
- #answers-and-discussion {
+ .hidden-answer {
    display:none;
  }

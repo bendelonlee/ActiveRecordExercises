@@ -1,6 +1,8 @@
 %h1
   = @exercise.name
 
+%div{id:"drag"}
+
 .exercise-instruction
   %p
     = @exercise.instruction
@@ -38,9 +40,9 @@
 
 %p
   Answers and Discussion
-  %button{onclick: "toggleSolution()", id: "toggle-button"}
+  %button{id: "toggle-button"}
     show
 
-#answers-and-discussion
-  %textarea{class: :readOnlyCode}
+#answers-and-discussion{class: "hidden-answer"}
+  %textarea{class: :readOnlyCode, id: :answerCode}
     = @exercise.solution

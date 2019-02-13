@@ -1,29 +1,34 @@
-function toggleSolution() {
-  let s = document.getElementById("answers-and-discussion");
-  let b = document.getElementById("toggle-button");
-  if (s.style.display === "none") {
-    s.style.display = "block";
-    b.innerHTML = "hide";
-    renderReadOnly()
-  } else {
-    s.style.display = "none";
-    b.innerHTML = "show";
-  }
-}
+
 
 var editableCodeMirror
 
-window.onload = function () {
-
+$(document).ready ( function() {
   let textArea = document.getElementById('solution_solution_code')
   editableCodeMirror = CodeMirror.fromTextArea(textArea, {
       mode: "ruby",
       theme: "mdn-like",
       lineNumbers: true
   });
+  $('#drag').draggable();
+  
   editableCodeMirror.setSize(800, 100);
 
-};
+  let readOnlyTextArea = document.getElementById('answerCode')
+  cm = CodeMirror.fromTextArea(readOnlyTextArea, {
+    mode: "ruby",
+    theme: "mdn-like",
+    lineNumbers: false,
+    readOnly: true
+  });
+
+  $("#toggle-button").on('click', function(event){
+    $("#answers-and-discussion").toggleClass()
+    $("#answerCode").val('h')
+    cm.setSize(350, 'auto');
+  });
+});
+
+
 
 function renderReadOnly() {
   $(".readOnlyCode").each(function() {
