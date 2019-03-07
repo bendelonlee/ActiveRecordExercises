@@ -61,6 +61,29 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
+
+def stub_omniauth
+  OmniAuth.config.mock_auth[:google_oauth2] = nil
+  OmniAuth.config.test_mode = true
+  omniauth_hash = {
+    "provider"=>"google_oauth2",
+    "uid"=>"uidexample",
+    "info"=>
+     {"name"=>"User Example",
+      "email"=>"user_example.7@gmail.com",
+      "first_name"=>"User",
+      "last_name"=>"Example",
+      "image"=>"https://example.com/photo.jpg",
+      "urls"=>{"google"=>"https://plus.google.com/10example"}},
+    "credentials"=>{"token"=>"example", "expires_at"=>1549997664, "expires"=>true},
+    "extra"=>
+      {"id_token"=>
+        "exampleidtoken"}
+    }
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(omniauth_hash)
+
+end
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
