@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
     <%= link_to('sign up', sign_up_path) %>
     <%= yield %>
   </body>

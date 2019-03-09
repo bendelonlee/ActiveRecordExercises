@@ -69,7 +69,7 @@ def stub_omniauth
     "provider"=>"google_oauth2",
     "uid"=>"uidexample",
     "info"=>
-     {"name"=>"User Example",
+     {"name"=>"User Jones",
       "email"=>"user_example.7@gmail.com",
       "first_name"=>"User",
       "last_name"=>"Example",
