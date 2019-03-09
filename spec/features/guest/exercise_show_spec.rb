@@ -72,6 +72,10 @@ describe 'excercise show page' do
       fill_in :solution_solution_code, with: "binding.pry"
       @error = "Only activerecord queries will be executed : `binding`, `pry` not permitted"
     end
+    scenario 'such as `Student.where( binding.pry )`' do
+      fill_in :solution_solution_code, with: "Student.where(binding.pry)"
+      @error = "Only activerecord queries will be executed : `binding`, `pry` not permitted"
+    end
     xit "such as `create`" do
       fill_in :solution_solution_code, with: "Student.create(name: 'Mr. Robot')"
       @error = "Only activerecord queries will be executed : `create` not permitted"
