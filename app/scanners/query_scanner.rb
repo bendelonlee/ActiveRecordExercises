@@ -11,8 +11,10 @@ class QueryScanner
     %w(Student Course Enrollment Teacher)
   end
 
-  def initialize(table_names = default_table_names)
+  def initialize(code = nil, table_names = default_table_names)
     @table_names = table_names
+    @code = code
+    @errors = []
   end
 
   def scan(code)
@@ -37,12 +39,12 @@ class QueryScanner
 
   def keywords
     split_words.reject do |word|
-      NON_KEYWORD_CHARS.include?(word[0]) || NON_KEYWORD_CHARS.include?(word[-1])
+      NON_KEYWORD_CHARS.include?(word[0]) || NON_KEYWORD_CHARS.include?(word[-1]) || word =~ /^\d+$/
     end
   end
 
   def unpermitted_keywords
-    keywords - ALLOWED_KEYWORDS
+    keywords.to_set.subtract(ALLOWED_KEYWORDS.merge(default_table_names))
   end
 
 end

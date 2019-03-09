@@ -38,8 +38,8 @@ describe 'excercise show page' do
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
-      @solution = "Student.where(98: price)"
-      @error = "syntax error, unexpected ':', expecting ')' Student.where(98: price)"
+      @solution = "Student.where(price: 98"
+      @error = "syntax error, unexpected end-of-input, expecting ')'"
     end
     scenario 'a column that does not exist' do
       @solution = "Student.where(dragon: 'puff')"

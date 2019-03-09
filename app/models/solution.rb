@@ -6,6 +6,18 @@ class Solution < ApplicationRecord
     safe? && eval!
   end
 
+  def safe?
+    qs = QueryScanner.new(solution_code)
+    if qs.safe?
+      return true
+    else
+      qs.errors.each do |error|
+        errors.add(error[0], error[1])
+      end
+      false
+    end
+  end
+
   def eval!
     begin
       @result = eval(solution_code)
