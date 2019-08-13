@@ -7,11 +7,25 @@ Things you may want to cover:
 
 * Ruby version
 
+
 * System dependencies
 
 * Configuration
 
 * Database creation
+Databases are set up as expected:
+
+`rails db:create`
+`rails db:migrate`
+`rails db:seed`
+
+Some extra for the mock database:
+
+`$DB=school rails db:create`
+`$DB=school rails db:migrate`
+`$DB=school rails db:seed`
+
+for more information: https://github.com/ankane/multiverse
 
 * Database initialization
 
