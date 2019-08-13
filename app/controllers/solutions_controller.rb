@@ -7,7 +7,7 @@ class SolutionsController < ApplicationController
       @solution_results = true
       @correct_query = @solution.correct?
     else
-      @solution_errors = @solution.errors.full_messages
+      @solution_errors = @solution.custom_error_messages
     end
     render "/exercises/show"
   end
