@@ -8,7 +8,9 @@ describe 'excercise show page' do
   end
   it 'when you execute your solution, you see your results next to the results returned by the correct solution' do
     exercise = create(:exercise)
-    create_list(:student, 2)
+    School::Student.create!(name: 'a')
+    School::Student.create!(name: 'b')
+
     visit exercise_path(exercise)
     fill_in :solution_solution_code, with: "Student.all"
     click_on "execute"
@@ -34,7 +36,9 @@ describe 'excercise show page' do
   describe 'gives an error message if the code generates an error' do
     before(:each) do
       exercise = create(:exercise)
-      create_list(:student, 2)
+      School::Student.create!(name: 'a')
+      School::Student.create!(name: 'b')
+
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
@@ -57,7 +61,9 @@ describe 'excercise show page' do
   describe 'it keeps unpermitted code from running' do
     before(:each) do
       exercise = create(:exercise)
-      create_list(:student, 2)
+      School::Student.create!(name: 'a')
+      School::Student.create!(name: 'b')
+
       visit exercise_path(exercise)
     end
     scenario "such as `exit`" do

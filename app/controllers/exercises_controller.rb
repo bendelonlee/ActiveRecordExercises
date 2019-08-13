@@ -6,5 +6,4 @@ class ExercisesController < ApplicationController
   def index
     @exercises = Exercise.all
   end
-  require 'pry'; binding.pry if @solution
 end
