@@ -1,4 +1,4 @@
-class SchoolRecord < ActiveRecord::Base
+class School::SchoolRecord < ActiveRecord::Base
   self.abstract_class = true
   establish_connection :"school_#{Rails.env}"
 end

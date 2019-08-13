@@ -1,2 +1,0 @@
-class Teacher < SchoolRecord
-end
