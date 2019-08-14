@@ -14,7 +14,11 @@
         <%= message %>
       </div>
     <% end %>
-    <%= link_to('sign up', sign_up_path) %>
+    <% if current_user %>
+      <%= "Logged in as #{current_user.name}" %>
+    <% else %>
+      <%= link_to('sign up', sign_up_path) %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
