@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190309204914) do
+ActiveRecord::Schema.define(version: 20190814202749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "completions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "exercise_id"
+    t.integer "times_completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_completions_on_exercise_id"
+    t.index ["user_id"], name: "index_completions_on_user_id"
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.text "instruction"
@@ -37,5 +47,7 @@ ActiveRecord::Schema.define(version: 20190309204914) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "completions", "exercises"
+  add_foreign_key "completions", "users"
   add_foreign_key "solutions", "exercises"
 end
