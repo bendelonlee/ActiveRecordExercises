@@ -113,7 +113,6 @@ describe 'excercise show page' do
     #got the functionality working with js, not sure how to test
     exercise = create(:exercise)
     visit exercise_path(exercise)
-    save_and_open_page
     expect(page).to_not have_content(exercise.solution)
     click_on "show solution"
     expect(page).to have_content(exercise.solution)
