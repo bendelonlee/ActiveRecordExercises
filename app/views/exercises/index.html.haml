@@ -2,5 +2,8 @@
   Exercises
 %ol
   - @exercises.each do |exercise|
-    %li
+    %li{:id => "exercise-#{exercise.id}"}
       = link_to exercise.name, exercise_path(exercise)
+      - if current_user && current_user.completed?(exercise)
+        = "Completed #{current_user.times_completed(exercise)} times"
+        -# Shoud fix with `current_user` once `current_user` is implement, `User.first` is a stopgap
