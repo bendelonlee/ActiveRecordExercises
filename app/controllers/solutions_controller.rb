@@ -4,12 +4,19 @@ class SolutionsController < ApplicationController
     @solution = Solution.new(solution_params).decorate
     @form_path = [@exercise, @solution]
     if @solution.results?
-      @solution_results = true
-      @correct_query = @solution.correct?
+      success
     else
       @solution_errors = @solution.custom_error_messages
     end
     render "/exercises/show"
+  end
+
+  private
+
+  def success
+    @solution_results = true
+    @correct_query = @solution.correct?
+    @exercise.mark_completed_by(current_user)
   end
 
   def solution_params
