@@ -3,12 +3,16 @@ class SolutionsController < ApplicationController
     @exercise = Exercise.find(params[:exercise_id]).decorate
     @solution = Solution.new(solution_params).decorate
     @form_path = [@exercise, @solution]
-    if @solution.results?
-      success
+    if current_user
+      if @solution.results?
+        success
+      else
+        @solution_errors = @solution.custom_error_messages
+      end
     else
-      @solution_errors = @solution.custom_error_messages
+      flash[:message] = "Log in or sign up to run your code!"
     end
-    render "/exercises/show"
+    render "/exercises/show"    
   end
 
   private
