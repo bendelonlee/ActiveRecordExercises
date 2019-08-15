@@ -16,10 +16,28 @@ Exercise.create!(name: "All courses",
                  solution: "Course.all",
                  instruction: "Write a query to return all Course models from the database.",
                  notes: "Easy peasy.")
+
 Exercise.create!(name: "All courses ordered by name",
                 solution: "Course.order(name: :asc)",
                 instruction: "Write a query to return all Course models from the database in ascending alphabetical order by name.",
                 notes: "It is possible to write Course.order(:name) and the data will be returned in ascending order by default. However, if you care what order your results are returned in, it's better practice to be specific.")
+
+Exercise.create!(name: "First student.",
+                solution: "Student.order(name: :asc).first",
+                instruction: "Write a query that returns the student model that's first in alphabetical order.",
+                notes: "You can also use bracket syntax, i.e. `Student.order(name: :asc)[0]` however `.first` and `.last` are considered to be more human readable. Additionally, when you use bracket syntax, this SQL is run:\n
+                SELECT \"students\".* FROM \"students\" ORDER BY \"students\".\"name\" ASC
+                \n But when we use .first or .last, the SQL that's run looks more like this:
+                SELECT  \"students\".* FROM \"students\" ORDER BY \"students\".\"name\" ASC LIMIT $1 [[\"LIMIT\", 1]]
+                The `limit` means that only one object will be returned from the database, rather than all objects, which is more efficient.
+                \n Other possible solutions: `Student.order(name: :desc).last")
+
+Exercise.create!(name: "3 hardest courses.",
+                solution: "Course.order(level: :desc).limit(3)",
+                instruction: "Write a query that returns the top 3 courses by 'level' descending.",
+                notes: "")
+
+
 
 
 # Commenting out advanced exercises for the time being
