@@ -13,16 +13,22 @@ User.destroy_all
 Exercise.destroy_all
 
 Exercise.create!(name: "All courses",
+                level: :basic,
+                index: 1,
                  solution: "Course.all",
                  instruction: "Write a query to return all Course models from the database.",
                  notes: "Easy peasy.")
 
 Exercise.create!(name: "All courses ordered by name",
+                level: :basic,
+                index: 2,
                 solution: "Course.order(name: :asc)",
                 instruction: "Write a query to return all Course models from the database in ascending alphabetical order by name.",
                 notes: "It is possible to write Course.order(:name) and the data will be returned in ascending order by default. However, if you care what order your results are returned in, it's better practice to be specific.")
 
-Exercise.create!(name: "First student.",
+Exercise.create!(name: "First student",
+                level: :basic,
+                index: 3,
                 solution: "Student.order(name: :asc).first",
                 instruction: "Write a query that returns the student model that's first in alphabetical order.",
                 notes: "You can also use bracket syntax, i.e. `Student.order(name: :asc)[0]` however `.first` and `.last` are considered to be more human readable. Additionally, when you use bracket syntax, this SQL is run:\n
@@ -32,10 +38,12 @@ Exercise.create!(name: "First student.",
                 The `limit` means that only one object will be returned from the database, rather than all objects, which is more efficient.
                 \n Other possible solutions: `Student.order(name: :desc).last")
 
-Exercise.create!(name: "3 hardest courses.",
+Exercise.create!(name: "3 hardest courses",
+                level: :basic,
+                index: 4,
                 solution: "Course.order(level: :desc).limit(3)",
                 instruction: "Write a query that returns the top 3 courses by 'level' descending.",
-                notes: "")
+                notes: "Rails magic is only taught after Defence Against the Dark Arts is firmly mastered")
 
 
 
