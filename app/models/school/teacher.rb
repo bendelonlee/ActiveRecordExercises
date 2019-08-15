@@ -1,2 +1,2 @@
-class School::Teacher < School::SchoolRecord
+class Teacher < School::Record
 end

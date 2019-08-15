@@ -2,7 +2,7 @@ require "rails_helper"
 describe 'exercise index page' do
   it 'when I complete an exercise, this is indicated on the exercise index' do
     create(:user)
-    School::Student.create!(name: 'b')
+    Student.create!(name: 'b')
     user = create(:user)
     ex1, ex2 = create_list(:exercise, 2)
     ex3 = Exercise.create!(name: "all", solution: "Student.all", instruction: "Write a query to return all Student models from the database.")

@@ -2,18 +2,6 @@ class Solution < ApplicationRecord
   belongs_to :exercise
   attr_reader :result
 
-  def solution_code=(code)
-    super(self.class.add_prefix(code))
-  end
-
-  def self.add_prefix(code)
-    result = code.clone
-    %w(Student Course Enrollment Teacher).each do | table_name |
-      result.gsub!("#{table_name}", "School::#{table_name}")
-    end
-    result
-  end
-
   def results?
     safe? && eval!
   end

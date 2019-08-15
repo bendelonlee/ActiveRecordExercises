@@ -8,8 +8,8 @@ describe 'excercise show page' do
   end
   it 'when you execute your solution, you are told to sign up for an account' do
     exercise = create(:exercise)
-    School::Student.create!(name: 'a')
-    School::Student.create!(name: 'b')
+    Student.create!(name: 'a')
+    Student.create!(name: 'b')
 
     visit exercise_path(exercise)
     fill_in :solution_solution_code, with: "Student.all"

@@ -3,7 +3,7 @@ class Exercise < ApplicationRecord
   enum level: [:basic, :intermediate, :advanced]
 
   def result
-    @result ||= eval(Solution.add_prefix(solution))
+    @result ||= eval(solution)
   end
 
   def mark_completed_by(user)
