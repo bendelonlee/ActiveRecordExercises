@@ -1,6 +1,9 @@
 module ResultHelper
 
   def print_result
+    if result.is_a?(Integer) || result.is_a?(Array)
+      return h.haml_tag :p, result
+    end
     # Rescue block certainly not ideal. I wanted to do something like `result.is_a?(ActiveRecord_Relation)` but it was not working
     begin
       result.count
