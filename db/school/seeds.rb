@@ -37,7 +37,7 @@ teacher_data = [
 ['Snape', 101],
 ['Sinistra', 707],
 ['Hagrid', 115],
-['Longbottom', 200],
+['Longbottom', 102],
 ['Firenze', 333],
 ['Babbling', 222],
 ['Espinosa', 323],
@@ -49,21 +49,21 @@ end
 School::Teacher.import(teachers)
 
 course_data = [
-   ['Wand Maintenence', 1],
-   ['Muggle Studies', 1],
-   ['Defence againt the Dark Arts', 2],
-   ['Potions', 3],
-   ['Astronomy', 4],
-   ['Care of Magical Creatures', 5],
-   ['Herbology', 6],
-   ['Divination', 7],
-   ['Study of Ancient Runes', 8],
-   ['Rails Magic', 9],
-   ['Flying', 10],
-   ['Charms', 1]
+   ['Wand Maintenence', 1, 100],
+   ['Muggle Studies', 1, 100],
+   ['Defence againt the Dark Arts', 2, 400],
+   ['Potions', 3, 200],
+   ['Astronomy', 4, 200],
+   ['Care of Magical Creatures', 5, 200],
+   ['Herbology', 6, 200],
+   ['Divination', 7, 300],
+   ['Study of Ancient Runes', 8, 300],
+   ['Rails Magic', 9, 500],
+   ['Flying', 10, 400],
+   ['Charms', 1, 100]
 ]
 courses = course_data.map.with_index do |course, i|
-  {id: i + 1, name: course[0], teacher_id: course[1]}
+  {id: i + 1, name: course[0], teacher_id: course[1], level: course[2]}
 end
 School::Course.import(courses)
 
