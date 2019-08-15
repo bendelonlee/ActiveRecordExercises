@@ -2,7 +2,7 @@ class QueryScanner
   ALLOWED_KEYWORDS = %w(
     all first find find_by group having joins last
     left_outer_joins order offset select unscope where
-    limit pluck
+    limit pluck count
   ).to_set
 
   NON_KEYWORD_CHARS = %w(" ' :).to_set

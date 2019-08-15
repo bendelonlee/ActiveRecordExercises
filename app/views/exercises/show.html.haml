@@ -19,13 +19,13 @@
       %h4
         Expected Results:
       -# %textarea{class: :readOnlyCode}
-      - @exercise.result_as_table
+      - @exercise.print_result
 
     #actual
       %h4
         Your Query Returned:
       -# %textarea{class: :readOnlyCode}
-      - @solution.result_as_table
+      - @solution.print_result
 
     %button{onclick: "toggleResult()", id: "result-toggle-button"}
 

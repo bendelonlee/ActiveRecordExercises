@@ -55,7 +55,7 @@ Exercise.create!(name: "The names of the 3 easiest courses",
 Exercise.create!(name: "The total number of enrollments",
                 level: :basic,
                 index: 6,
-                solution: "Enrollments.count",
+                solution: "Enrollment.count",
                 instruction: "Write a query that returns the count of all enrollments.",
                 notes: "")
 
@@ -83,7 +83,7 @@ Exercise.create!(name: "One student's enrollments",
 Exercise.create!(name: "Two teacher's courses",
                 level: :basic,
                 index: 10,
-                solution: "Enrollment.where(teacher_id: [1, 9])",
+                solution: "Enrollment.where(course_id: [1, 9])",
                 instruction: "Write a query that returns the enrollments of the teachers with ids 1 and 9.",
                 notes: "")
 
