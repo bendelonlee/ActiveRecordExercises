@@ -2,6 +2,7 @@ class QueryScanner
   ALLOWED_KEYWORDS = %w(
     all first find find_by group having joins last
     left_outer_joins order offset select unscope where
+    limit pluck count
   ).to_set
 
   NON_KEYWORD_CHARS = %w(" ' :).to_set
@@ -11,11 +12,7 @@ class QueryScanner
     %w(Student Course Enrollment Teacher)
   end
 
-  def names_with_prefix
-    default_table_names.map{|name| "School::" + name}
-  end
-
-  def initialize(code = nil, table_names = names_with_prefix)
+  def initialize(code = nil, table_names = default_table_names)
     @table_names = table_names
     @code = code
     @errors = []
@@ -48,7 +45,7 @@ class QueryScanner
   end
 
   def unpermitted_keywords
-    keywords.to_set.subtract(ALLOWED_KEYWORDS.merge(names_with_prefix))
+    keywords.to_set.subtract(ALLOWED_KEYWORDS.merge(default_table_names))
   end
 
 end

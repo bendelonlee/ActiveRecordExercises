@@ -8,8 +8,8 @@ describe 'excercise show page' do
   end
   it 'when you execute your solution, you see your results next to the results returned by the correct solution' do
     exercise = create(:exercise)
-    School::Student.create!(name: 'a')
-    School::Student.create!(name: 'b')
+    Student.create!(name: 'a')
+    Student.create!(name: 'b')
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit exercise_path(exercise)
@@ -37,8 +37,8 @@ describe 'excercise show page' do
   describe 'gives an error message if the code generates an error' do
     before(:each) do
       exercise = create(:exercise)
-      School::Student.create!(name: 'a')
-      School::Student.create!(name: 'b')
+      Student.create!(name: 'a')
+      Student.create!(name: 'b')
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -64,8 +64,8 @@ describe 'excercise show page' do
   describe 'it keeps unpermitted code from running' do
     before(:each) do
       exercise = create(:exercise)
-      School::Student.create!(name: 'a')
-      School::Student.create!(name: 'b')
+      Student.create!(name: 'a')
+      Student.create!(name: 'b')
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 

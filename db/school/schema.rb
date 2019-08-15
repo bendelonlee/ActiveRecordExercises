@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20190120213919) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
+    t.integer "level"
     t.bigint "teacher_id"
     t.index ["teacher_id"], name: "index_courses_on_teacher_id"
   end

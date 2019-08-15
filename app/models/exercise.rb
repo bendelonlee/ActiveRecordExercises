@@ -1,8 +1,9 @@
 class Exercise < ApplicationRecord
   validates_presence_of :name, :solution, :instruction
+  enum level: [:basic, :intermediate, :advanced]
 
   def result
-    @result ||= eval(Solution.add_prefix(solution))
+    @result ||= eval(solution)
   end
 
   def mark_completed_by(user)
