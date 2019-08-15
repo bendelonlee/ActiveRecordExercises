@@ -43,7 +43,49 @@ Exercise.create!(name: "3 hardest courses",
                 index: 4,
                 solution: "Course.order(level: :desc).limit(3)",
                 instruction: "Write a query that returns the top 3 courses by 'level' descending.",
-                notes: "Rails magic is only taught after Defence Against the Dark Arts is firmly mastered")
+                notes: "")
+
+Exercise.create!(name: "The names of the 3 easiest courses",
+                level: :basic,
+                index: 5,
+                solution: "Course.order(level: :asc).limit(3).pluck(:name)",
+                instruction: "Write a query that returns the top 3 courses by 'level' descending.",
+                notes: "")
+
+Exercise.create!(name: "The total number of enrollments",
+                level: :basic,
+                index: 6,
+                solution: "Enrollments.count",
+                instruction: "Write a query that returns the count of all enrollments.",
+                notes: "")
+
+Exercise.create!(name: "All passing enrollments",
+                level: :basic,
+                index: 7,
+                solution: "Enrollment.where('grade >= 60')",
+                instruction: "Write a query that returns all enrollments where the grade is 60 or higher.",
+                notes: "")
+
+Exercise.create!(name: "The number of failing enrollments",
+                level: :basic,
+                index: 8,
+                solution: "Course.order(level: :desc).limit(3)",
+                instruction: "Write a query that returns a count of enrollments where the grade is lower than 60.",
+                notes: "Enrollment.where('grade < 60').count")
+
+Exercise.create!(name: "One student's enrollments",
+                level: :basic,
+                index: 9,
+                solution: "Enrollment.where(student_id: [1])",
+                instruction: "Write a query that returns the enrollments of the student with id 1.",
+                notes: "")
+
+Exercise.create!(name: "Two teacher's courses",
+                level: :basic,
+                index: 10,
+                solution: "Enrollment.where(teacher_id: [1, 9])",
+                instruction: "Write a query that returns the enrollments of the teachers with ids 1 and 9.",
+                notes: "")
 
 
 
