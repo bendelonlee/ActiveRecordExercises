@@ -51,7 +51,6 @@ describe 'the next and previous links on the exercise show page' do
 
     visit exercise_path(ex1)
     expect(page).to_not have_content("Previous Exercise")
-
   end
 
 end
