@@ -1,6 +1,15 @@
 class Exercise < ApplicationRecord
-  validates_presence_of :name, :solution, :instruction
+  validates_presence_of :name, :solution, :instruction, :index
   enum level: [:basic, :intermediate, :advanced]
+
+  def self.minimum_index
+    # These methods would be improved with some form of caching as they rarely change
+    minimum(:index)
+  end
+
+  def self.maximum_index
+    maximum(:index)
+  end
 
   def result
     @result ||= eval(solution)

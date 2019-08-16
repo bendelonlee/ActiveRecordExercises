@@ -1,7 +1,15 @@
 %h1
-  = @exercise.name
+  = @exercise.index.to_s + '. ' + @exercise.name
 
-%div{id:"drag"}
+-# %div{id:"drag"}
+#top-exercise-nav
+  - if @exercise.index > Exercise.minimum_index
+    = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
+  |
+  - if @exercise.index < Exercise.maximum_index
+    = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))
+
+
 
 .exercise-instruction
   %p
@@ -46,3 +54,10 @@
 #answers-and-discussion{class: "hidden-answer"}
   %textarea{class: :readOnlyCode, id: :answerCode}
     = @exercise.solution
+
+#bottom-exercise-nav
+  - if @exercise.index > Exercise.minimum_index
+    = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
+  |
+  - if @exercise.index < Exercise.maximum_index
+    = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))
