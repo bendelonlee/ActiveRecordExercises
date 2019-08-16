@@ -3,6 +3,7 @@ class Exercise < ApplicationRecord
   enum level: [:basic, :intermediate, :advanced]
 
   def self.minimum_index
+    # These methods would be improved with some form of caching as they rarely change
     minimum(:index)
   end
 

@@ -43,4 +43,14 @@ describe 'the next and previous links on the exercise show page' do
     expect(current_path).to eq(exercise_path(ex1))
   end
 
+  it 'previous and next buttons do not appear when not appropriate' do
+    ex1 = create(:exercise, index: 4)
+    ex2 = create(:exercise, index: 5)
+    visit exercise_path(ex2)
+    expect(page).to_not have_content("Next Exercise")
+
+    visit exercise_path(ex1)
+    expect(page).to_not have_content("Previous Exercise")
+  end
+
 end
