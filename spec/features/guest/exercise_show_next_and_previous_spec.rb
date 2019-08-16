@@ -12,4 +12,35 @@ describe 'the next and previous links on the exercise show page' do
       expect(page).to have_content('Previous Exercise')
     end
   end
+  it 'the next link takes you the next exercise' do
+    ex1 = create(:exercise, index: 1)
+    ex2 = create(:exercise, index: 2)
+    visit exercise_path(ex1)
+    within "#top-exercise-nav" do
+      click_on('Next Exercise')
+    end
+    expect(current_path).to eq(exercise_path(ex2))
+
+    visit exercise_path(ex1)
+    within "#bottom-exercise-nav" do
+      click_on('Next Exercise')
+    end
+    expect(current_path).to eq(exercise_path(ex2))
+  end
+  it 'the previous link takes you the previous exercise' do
+    ex1 = create(:exercise, index: 1)
+    ex2 = create(:exercise, index: 2)
+    visit exercise_path(ex2)
+    within "#top-exercise-nav" do
+      click_on('Previous Exercise')
+    end
+    expect(current_path).to eq(exercise_path(ex1))
+
+    visit exercise_path(ex2)
+    within "#bottom-exercise-nav" do
+      click_on('Previous Exercise')
+    end
+    expect(current_path).to eq(exercise_path(ex1))
+  end
+
 end
