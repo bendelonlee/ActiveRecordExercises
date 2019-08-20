@@ -9,8 +9,7 @@ $(document).ready ( function() {
       theme: "mdn-like",
       lineNumbers: true
   });
-  $('#drag').draggable();
-  
+
   editableCodeMirror.setSize(800, 100);
 
   let readOnlyTextArea = document.getElementById('answerCode')
