@@ -17,8 +17,8 @@
     = @exercise.instruction
 
 #guest-solution
+  %p Your Solution:
   = form_for @form_path do |f|
-    = f.label :solution_code
     = f.text_area :solution_code
     = f.submit :execute, onclick: "addCodeToTextArea()"
 
@@ -53,9 +53,11 @@
     show
 
 #answers-and-discussion{class: "hidden-answer"}
+  %p Our Solution:
   %textarea{class: :readOnlyCode, id: :answerCode}
     = @exercise.solution
-
+  %br
+  	
 #bottom-exercise-nav
   - if @exercise.index > Exercise.minimum_index
     = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
