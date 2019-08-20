@@ -1,5 +1,11 @@
 require "rails_helper"
 describe 'excercise show page' do
+  it 'has a link back to the home page' do
+    exercise = create(:exercise)
+    visit exercise_path(exercise)
+    click_on('All Exercises')
+    expect(current_path).to eq(exercises_path)
+  end
   it 'has the exercise name and instruction' do
     exercise = create(:exercise)
     visit exercise_path(exercise)
