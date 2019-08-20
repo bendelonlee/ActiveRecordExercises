@@ -48,16 +48,16 @@
       = error
 
 %p
-  Answers and Discussion
   %button{id: "toggle-button"}
-    show
+    %span{id: "surrender-button"}
 
 #answers-and-discussion{class: "hidden-answer"}
   %p Our Solution:
   %textarea{class: :readOnlyCode, id: :answerCode}
     = @exercise.solution
   %br
-  	
+
+
 #bottom-exercise-nav
   - if @exercise.index > Exercise.minimum_index
     = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))

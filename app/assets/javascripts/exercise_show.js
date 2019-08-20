@@ -25,6 +25,8 @@ $(document).ready ( function() {
     $("#answerCode").val('h')
     cm.setSize(350, 'auto');
   });
+
+  fillSurrenderText();
 });
 
 
@@ -40,6 +42,19 @@ function renderReadOnly() {
     cm.setSize(350, 'auto');
   });
 };
+
+function fillSurrenderText() {
+  let arr = [
+    "Just Let Go",
+    "Hail Mary",
+    "Pass",
+    "Let The Computers Win",
+    "Spare Me My Life From This Monstrosity",
+    "Show Answer"
+  ]
+  let quip = arr[Math.floor(Math.random() * arr.length)];
+  $('#surrender-button').text(quip);
+}
 
 function addCodeToTextArea() {
   editableCodeMirror.save;
