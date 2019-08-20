@@ -49,7 +49,7 @@ Exercise.create!(name: "The names of the 3 easiest courses",
                 level: :basic,
                 index: 5,
                 solution: "Course.order(level: :asc).limit(3).pluck(:name)",
-                instruction: "Write a query that returns the top 3 courses by 'level' descending.",
+                instruction: "Write a query that returns a list of the names of the 3 courses with the lowest 'level' descending.",
                 notes: "")
 
 Exercise.create!(name: "The total number of enrollments",

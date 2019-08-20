@@ -55,3 +55,7 @@
  .hidden-answer {
    display:none;
  }
+
+ #notes {
+   width: 700px;
+ }

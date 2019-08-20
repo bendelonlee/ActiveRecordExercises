@@ -3,12 +3,13 @@
 
 -# %div{id:"drag"}
 #top-exercise-nav
+  = link_to("All Exercises", exercises_path)
   - if @exercise.index > Exercise.minimum_index
+    |
     = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
   |
   - if @exercise.index < Exercise.maximum_index
     = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))
-
 
 
 .exercise-instruction
@@ -16,8 +17,8 @@
     = @exercise.instruction
 
 #guest-solution
+  %p Your Solution:
   = form_for @form_path do |f|
-    = f.label :solution_code
     = f.text_area :solution_code
     = f.submit :execute, onclick: "addCodeToTextArea()"
 
@@ -47,13 +48,18 @@
       = error
 
 %p
-  Answers and Discussion
   %button{id: "toggle-button"}
-    show
+    %span{id: "surrender-button"}
 
 #answers-and-discussion{class: "hidden-answer"}
+  %p Our Solution:
   %textarea{class: :readOnlyCode, id: :answerCode}
     = @exercise.solution
+  %p Notes:
+  #notes
+    = @exercise.notes
+  %br
+
 
 #bottom-exercise-nav
   - if @exercise.index > Exercise.minimum_index
