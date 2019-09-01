@@ -23,22 +23,11 @@ describe 'excercise show page' do
     click_on "execute"
     within "#expected" do
       expect(page).to have_content("Expected Results:")
-#       expect(page).to have_content(/
-#       <ActiveRecord::Relation [
-# <Student id: 498,
-#  name: "MyString",
-#  price: 1,
-#  created_at: "2019-01-19 19:20:11",
-#  updated_at: "2019-01-19 19:20:11">,
-#
-# <Student id: 499,
-#  name: "MyString",
-#  price: 1,
-#  created_at: "2019-01-19 19:20:11",
-#  updated_at: "2019-01-19 19:20:11">]>/)
+
     end
     expect(page).to have_content("Your Query Returned:")
     expect(page).to have_content("Success!")
+    expect(page).to_not have_css("#surrender-button")
   end
   describe 'gives an error message if the code generates an error' do
     before(:each) do

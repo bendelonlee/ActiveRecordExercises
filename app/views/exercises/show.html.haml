@@ -50,7 +50,7 @@
 - if @exercise.blocked?(current_user)
   %p You will be able to complete this exercise in #{@exercise.hours_until_unblocked(current_user)} hours
 
-- unless @show_answer
+- unless @show_answer || @correct_query
   %p
     = button_to('', surrender_path(@exercise), {id: 'surrender-button', data: {confirm: "Choosing to look at our answer means you won't be able to get credit for completing this exercise for another 24 hours. Are you sure you want to peak?"}})
 
