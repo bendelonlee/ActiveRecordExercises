@@ -13,18 +13,17 @@ $(document).ready ( function() {
   editableCodeMirror.setSize(800, 100);
 
   let readOnlyTextArea = document.getElementById('answerCode')
-  cm = CodeMirror.fromTextArea(readOnlyTextArea, {
-    mode: "ruby",
-    theme: "mdn-like",
-    lineNumbers: false,
-    readOnly: true
-  });
-
-  $("#toggle-button").on('click', function(event){
-    $("#answers-and-discussion").toggleClass()
+  if(readOnlyTextArea) {
+    cm = CodeMirror.fromTextArea(readOnlyTextArea, {
+      mode: "ruby",
+      theme: "mdn-like",
+      lineNumbers: false,
+      readOnly: true
+    });
     $("#answerCode").val('h')
     cm.setSize(350, 'auto');
-  });
+  }
+
 
   fillSurrenderText();
 });
@@ -53,7 +52,7 @@ function fillSurrenderText() {
     "Show Answer"
   ]
   let quip = arr[Math.floor(Math.random() * arr.length)];
-  $('#surrender-button').text(quip);
+  $('#surrender-button').attr("value", quip);
 }
 
 function addCodeToTextArea() {

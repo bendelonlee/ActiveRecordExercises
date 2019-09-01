@@ -51,14 +51,15 @@
   %button{id: "toggle-button"}
     %span{id: "surrender-button"}
 
-#answers-and-discussion{class: "hidden-answer"}
-  %p Our Solution:
-  %textarea{class: :readOnlyCode, id: :answerCode}
-    = @exercise.solution
-  %p Notes:
-  #notes
-    = @exercise.notes
-  %br
+- if @show_answer
+  #answers-and-discussion
+    %p Our Solution:
+    %textarea{class: :readOnlyCode, id: :answerCode}
+      = @exercise.solution
+    %p Notes:
+    #notes
+      = @exercise.notes
+    %br
 
 
 #bottom-exercise-nav
