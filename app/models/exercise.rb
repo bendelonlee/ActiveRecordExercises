@@ -17,6 +17,7 @@ class Exercise < ApplicationRecord
   end
 
   def mark_completed_by(user)
+    return if blocked?(user)
     completion = Completion.find_or_create_by!(user: user, exercise: self)
     if completion.times_completed
       completion.times_completed += 1
