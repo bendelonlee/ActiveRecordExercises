@@ -4,7 +4,7 @@ class CreateTimedBlocks < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.references :exercise, foreign_key: true
       t.datetime :expiration
-      t.integer :type
+      t.integer :reason
 
       t.timestamps
     end
