@@ -1,5 +1,5 @@
 class TimedBlock < ApplicationRecord
-  enum type: [:success, :peak]
+  enum reason: [:success, :peeked]
   belongs_to :user
   belongs_to :exercise
 end
