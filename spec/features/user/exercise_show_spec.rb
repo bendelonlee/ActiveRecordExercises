@@ -82,7 +82,7 @@ describe 'excercise show page' do
       fill_in :solution_solution_code, with: "Student.where(binding.pry)"
       @error = "Only activerecord queries will be executed : `binding`, `pry` not permitted"
     end
-    xit "such as `create`" do
+    it "such as `create`" do
       fill_in :solution_solution_code, with: "Student.create(name: 'Mr. Robot')"
       @error = "Only activerecord queries will be executed : `create` not permitted"
     end
@@ -90,32 +90,9 @@ describe 'excercise show page' do
       fill_in :solution_solution_code, with: "Student.destroy_all"
       @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
     end
-    xit "such as `DROP TABLE students` inside of a string passed into sql" do
-#       Not sure how to write a hack that I may need to worry about. PG seems to already be looking out for this
-#       in rails console, when I enter:
-#             Student.where("students.name='candle'); SELECT students.name FROM students WHERE (students.name='candle'")
-#       the sql generated is:
-#             SELECT  "students".* FROM "students" WHERE (students.name='candle'); SELECT students.name FROM students WHERE (students.name='candle') LIMIT $1
-#       and I get this error:
-#             ActiveRecord::StatementInvalid: PG::SyntaxError: ERROR:  cannot insert multiple commands into a prepared statement
-#       I get the same error when I try to insert a sneaky DROP TABLE like so:
-#             where("students.name='candle'); DROP TABLE students; SELECT students.name FROM students WHERE (students.name='candle'")
-#       And the table is not dropped
-      fill_in :solution_solution_code, with: "Student.where('students.name=\"candle\"')"
-      @error = "Only activerecord queries will be executed : `destroy_all` not permitted"
-    end
     after(:each) do
       click_on "execute"
       expect(page).to have_content(@error)
     end
-  end
-  xit 'hides the solution. But when you press the "show solution" button it shows the solution. You can then press "hide solution" which hides the solution' do
-    #got the functionality working with js, not sure how to test
-    exercise = create(:exercise)
-    visit exercise_path(exercise)
-    expect(page).to_not have_content(exercise.solution)
-    click_on "show solution"
-    expect(page).to have_content(exercise.solution)
-
   end
 end
