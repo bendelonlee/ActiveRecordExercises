@@ -45,8 +45,8 @@
     %p
       = error
 
-- if @exercise.blocked?(current_user)
-  %p You will be able to complete this exercise in #{@exercise.hours_until_unblocked(current_user)} hours
+- if @exercise.blocked_text(current_user)
+  %p #{@exercise.blocked_text(current_user)}
 
 - unless @show_answer || @correct_query
   %p

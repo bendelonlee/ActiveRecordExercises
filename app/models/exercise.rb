@@ -29,17 +29,29 @@ class Exercise < ApplicationRecord
   end
 
   def blocked?(user)
-    current_blocks.any?
+    current_blocks(user).any?
+  end
+
+  def blocked_text(user)
+    block = relevant_block(user)
+    return nil unless block
+     "You will be able to complete this exercise \
+#{block.success? ? 'again ' : ''}\
+in #{hours_until_unblocked(user)} hours"
   end
 
   def hours_until_unblocked(user)
-    seconds = current_blocks.order(expiration: :desc).first.expiration - Time.now
+    seconds = relevant_block(user).expiration - Time.now
     (seconds / (3600)).round
   end
 
   private
 
-  def current_blocks
-    timed_blocks.where('expiration > ?', Time.now)
+  def relevant_block(user)
+    current_blocks(user).order(expiration: :desc).first
+  end
+
+  def current_blocks(user)
+    timed_blocks.where('expiration > ?', Time.now).where(user: user)
   end
 end

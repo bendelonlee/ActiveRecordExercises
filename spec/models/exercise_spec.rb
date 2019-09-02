@@ -60,5 +60,15 @@ RSpec.describe Exercise, type: :model do
       TimedBlock.create!(user: user, exercise: exercise, expiration: 17.hours.from_now)
       expect(exercise.hours_until_unblocked(user)).to eq(17)
     end
+    it 'blocked_text' do
+      user = create(:user)
+      exercise = create(:exercise)
+      expect(exercise.blocked_text(user)).to eq(nil)
+
+      TimedBlock.create!(user: user, exercise: exercise, expiration: 7.hours.from_now, reason: :peeked)
+      expect(exercise.blocked_text(user)).to eq("You will be able to complete this exercise in 7 hours")
+      TimedBlock.create!(user: user, exercise: exercise, expiration: 17.hours.from_now, reason: :success)
+      expect(exercise.blocked_text(user)).to eq("You will be able to complete this exercise again in 17 hours")
+    end
   end
 end
