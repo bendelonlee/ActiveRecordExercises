@@ -1,7 +1,6 @@
 %h1
   = @exercise.index.to_s + '. ' + @exercise.name
 
--# %div{id:"drag"}
 #top-exercise-nav
   = link_to("All Exercises", exercises_path)
   - if @exercise.index > Exercise.minimum_index
@@ -27,7 +26,6 @@
     #expected
       %h4
         Expected Results:
-      -# %textarea{class: :readOnlyCode}
       - @exercise.print_result
 
     #actual
