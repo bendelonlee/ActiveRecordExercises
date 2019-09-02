@@ -25,6 +25,7 @@ class Exercise < ApplicationRecord
       completion.times_completed = 1
     end
     completion.save
+    TimedBlock.create!(exercise: self, user: user, expiration: 2.days.from_now, reason: :success)
   end
 
   def blocked?(user)

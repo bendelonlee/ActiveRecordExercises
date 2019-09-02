@@ -18,6 +18,7 @@ RSpec.describe Exercise, type: :model do
   end
   describe 'instance methods' do
     it 'mark_completed_by' do
+
       user = create(:user)
       exercise = create(:exercise)
       exercise.mark_completed_by(user)
@@ -26,16 +27,13 @@ RSpec.describe Exercise, type: :model do
       expect(completion.user).to eq(user)
       expect(completion.exercise).to eq(exercise)
       expect(completion.times_completed).to eq(1)
+      expect(TimedBlock.count).to eq(1)
       exercise.mark_completed_by(user)
+      expect(completion.times_completed).to eq(1)
+      TimedBlock.destroy_all
       exercise.mark_completed_by(user)
       completion.reload
-      expect(completion.times_completed).to eq(3)
-      TimedBlock.create(exercise: exercise, user: user, expiration: 1.days.from_now)
-      exercise.mark_completed_by(user)
-      completion.reload
-      
-      expect(completion.times_completed).to eq(3)
-
+      expect(completion.times_completed).to eq(2)
     end
     describe 'blocked?' do
       before(:each) do
