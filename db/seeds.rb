@@ -9,6 +9,7 @@ include FactoryBot::Syntax::Methods
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Completion.destroy_all
+TimedBlock.destroy_all
 User.destroy_all
 Exercise.destroy_all
 
@@ -69,9 +70,9 @@ Exercise.create!(name: "All passing enrollments",
 Exercise.create!(name: "The number of failing enrollments",
                 level: :basic,
                 index: 8,
-                solution: "Course.order(level: :desc).limit(3)",
+                solution: "Enrollment.where('grade < 60').count",
                 instruction: "Write a query that returns a count of enrollments where the grade is lower than 60.",
-                notes: "Enrollment.where('grade < 60').count")
+                notes: "")
 
 Exercise.create!(name: "One student's enrollments",
                 level: :basic,
