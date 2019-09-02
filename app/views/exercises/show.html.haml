@@ -1,7 +1,6 @@
 %h1
   = @exercise.index.to_s + '. ' + @exercise.name
 
--# %div{id:"drag"}
 #top-exercise-nav
   = link_to("All Exercises", exercises_path)
   - if @exercise.index > Exercise.minimum_index
@@ -27,7 +26,6 @@
     #expected
       %h4
         Expected Results:
-      -# %textarea{class: :readOnlyCode}
       - @exercise.print_result
 
     #actual
@@ -47,18 +45,22 @@
     %p
       = error
 
-%p
-  %button{id: "toggle-button"}
-    %span{id: "surrender-button"}
+- if @exercise.blocked_text(current_user)
+  %p #{@exercise.blocked_text(current_user)}
 
-#answers-and-discussion{class: "hidden-answer"}
-  %p Our Solution:
-  %textarea{class: :readOnlyCode, id: :answerCode}
-    = @exercise.solution
-  %p Notes:
-  #notes
-    = @exercise.notes
-  %br
+- unless @show_answer || @correct_query
+  %p
+    = button_to('', surrender_path(@exercise), {id: 'surrender-button', data: {confirm: "Choosing to look at our answer means you won't be able to get credit for completing this exercise for another 24 hours. Are you sure you want to peak?"}})
+
+- if @show_answer
+  #answers-and-discussion
+    %p Our Solution:
+    %textarea{class: :readOnlyCode, id: :answerCode}
+      = @exercise.solution
+    %p Notes:
+    #notes
+      = @exercise.notes
+    %br
 
 
 #bottom-exercise-nav
