@@ -1,6 +1,8 @@
 %h1
   = @exercise.index.to_s + '. ' + @exercise.name
 
+= image_tag(asset_path('school_tables.jpg'), id: 'db-tables')
+
 #top-exercise-nav
   = link_to("All Exercises", exercises_path)
   - if @exercise.index > Exercise.minimum_index
@@ -9,7 +11,6 @@
   |
   - if @exercise.index < Exercise.maximum_index
     = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))
-
 
 .exercise-instruction
   %p

@@ -44,9 +44,6 @@ function renderReadOnly() {
 
 function fillSurrenderText() {
   let arr = [
-    "Just Let Go",
-    "Hail Mary",
-    "Pass",
     "Let The Computers Win",
     "Spare Me My Life From This Monstrosity",
     "Show Answer"
