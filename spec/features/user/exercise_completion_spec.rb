@@ -15,6 +15,9 @@ describe 'exercise index page' do
     click_on 'execute'
     expect(page).to have_content('Success!')
     expect(page).to have_css("#answers-and-discussion")
+    within ".results" do
+      expect(page).to have_content("Student")
+    end
     visit exercises_path
     within "#exercise-#{ex3.id}" do
       expect(page).to have_content "Completed 1 times"
