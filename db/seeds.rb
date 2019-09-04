@@ -78,8 +78,8 @@ Exercise.create!(name: "One student's enrollments",
 Exercise.create!(name: "Two teacher's courses",
                 level: :basic,
                 index: 10,
-                solution: "Enrollment.where(course_id: [1, 9])",
-                instruction: "Write a query that returns the enrollments of the teachers with ids 1 and 9.",
+                solution: "Course.where(teacher_id: [1, 9])",
+                instruction: "Write a query that returns the courses of the teachers with ids 1 and 9.",
                 notes: "")
 
 Exercise.create!(name: "The names of the 3 easiest courses",
