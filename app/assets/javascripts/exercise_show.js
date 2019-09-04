@@ -24,11 +24,14 @@ $(document).ready ( function() {
     cm.setSize(800, 'auto');
   }
 
-
+  FlashFadeOut();
   fillSurrenderText();
 });
 
 
+function FlashFadeOut() {
+  $('.alert').fadeOut(5000)
+}
 
 function renderReadOnly() {
   $(".readOnlyCode").each(function() {
