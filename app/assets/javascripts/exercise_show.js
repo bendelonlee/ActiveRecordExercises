@@ -21,7 +21,7 @@ $(document).ready ( function() {
       readOnly: true
     });
     $("#answerCode").val('h')
-    cm.setSize(350, 'auto');
+    cm.setSize(800, 'auto');
   }
 
 

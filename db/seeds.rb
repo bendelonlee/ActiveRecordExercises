@@ -1,13 +1,7 @@
 require 'factory_bot_rails'
 
 include FactoryBot::Syntax::Methods
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 Completion.destroy_all
 TimedBlock.destroy_all
 User.destroy_all
@@ -50,7 +44,7 @@ Exercise.create!(name: "Average grade",
                 level: :basic,
                 index: 5,
                 solution: "Enrollment.average('grade')",
-                instruction: "Write a query that returns the average grade of all enrollments",
+                instruction: "Write a query that returns the average grade of all enrollments.",
                 notes: "")
 
 Exercise.create!(name: "The total number of enrollments",
@@ -99,19 +93,19 @@ Exercise.create!(name: "Rails Magic students",
                 level: :intermediate,
                 index: 12,
                 solution: "Student.joins(enrollments: :course).where(courses: {name: 'Rails Magic'})",
-                instruction: "Select a list of all students enrolled in the course with the name Rails Magic",
+                instruction: "Select a list of all students enrolled in the course with the name 'Rails Magic'.",
                 notes: "If a has_many: :through relationship were defined in the Course model, one would be able to run `Course.find_by(name: 'Rails Magic').students`, however this would result in two queries to the database rather than one.")
 
 Exercise.create!(name: "Courses by popularity",
                 level: :intermediate,
                 index: 13,
                 solution: "Course.joins(:enrollments).group(:id).order('count(enrollments) desc')",
-                instruction: "Write a query that returns the courses in descending order of their popularity (number of associated enrollments)",
+                instruction: "Write a query that returns the courses in descending order of their popularity (number of associated enrollments).",
                 notes: "")
 
 Exercise.create!(name: "Student names and their average grades",
                 level: :intermediate,
-                solution: 'Student.select("name, avg(enrollments.grade) as average_grade").joins(:enrollments).group(:id)',
+                solution: "Student.select('name, avg(enrollments.grade) as average_grade').joins(:enrollments).group(:id)",
                 index: 14,
                 instruction: "Write a query to return all students names and their average grades (as an attribute called average_grade) in this column order.",
                 notes: "")
@@ -120,7 +114,7 @@ Exercise.create!(name: "McGuffin's students",
                 level: :intermediate,
                 solution: "Student.joins(enrollments: {course: :teacher}).where(teachers: {name: 'McGuffin'})",
                 index: 15,
-                instruction: "Select all students taught by the teacher with the name 'McGuffin'",
+                instruction: "Select all students taught by the teacher with the name 'McGuffin'.",
                 notes: "")
 
 Exercise.create!(name: "Teacher with the the most courses",
@@ -134,14 +128,14 @@ Exercise.create!(name: "3 courses with highest elevation",
                 level: :intermediate,
                 solution: "Course.select('courses.*, teachers.room_number').joins(:teacher).group('teachers.room_number', :id).order('teachers.room_number desc').limit(3)",
                 index: 17,
-                instruction: "A courses's elevation is determined by the room_number column on the teacher table (700 room numbers are higher than 600 room numbers and so on). Write a query that returns the three most elevated courses",
+                instruction: "A courses's elevation is determined by the room_number column on the teacher table (700 room numbers are higher than 600 room numbers and so on). Write a query that returns the three most elevated courses.",
                 notes: "")
 
 Exercise.create!(name: "Students by course count",
                 level: :intermediate,
                 solution: "Student.select('students.*, count(enrollments.id) as course_count').joins(:enrollments).group(:id).order('course_count asc, students.name asc')",
                 index: 18,
-                instruction: "Write a query that returns students ranked by number of course they are taking, ascending. Include the count as a column called 'course_count' in the results. Secondarily sort by student name, ascending",
+                instruction: "Write a query that returns students ranked by number of course they are taking, ascending. Include the count as a column called 'course_count' in the results. Secondarily sort by student name, ascending.",
                 notes: "")
 
 Exercise.create!(name: "Tough teachers",
@@ -155,21 +149,21 @@ Exercise.create!(name: "Average grade in the course named Potions",
                 level: :intermediate,
                 index: 20,
                 solution: "Course.select('avg(enrollments.grade) as av_grade').joins(:enrollments).group(:id).where(courses: {name: 'Potions'}).first.av_grade",
-                instruction: "Write a query that returns the average grade for all enrollments for the course named 'Potions'",
+                instruction: "Write a query that returns the average grade for all enrollments for the course named 'Potions'.",
                 notes: "av_grade is a hidden column.")
 
 Exercise.create!(name: "Count of each letter grade",
                 level: :advanced,
                 index: 21,
                 solution: "Enrollment.select(\"count(id), CASE WHEN grade >= 90 THEN 'A' WHEN grade >= 80 THEN 'B' WHEN grade >= 70 THEN 'C' WHEN grade >= 60 THEN 'D' ELSE 'F' END as letter_grade\").group(:letter_grade).order('letter_grade ASC')",
-                instruction: "Write a query that returns an activerecord relation with a column called 'letter_grade' ('A' for grades above 90, 'B' for above 80 and so on) and a count of all enrollments whose grade falls within that letter grade",
+                instruction: "Write a query that returns an activerecord relation with a column called 'letter_grade' ('A' for grades above 90, 'B' for above 80 and so on) and a count of all enrollments whose grade falls within that letter grade.",
                 notes: "* CASE WHEN syntax is specific for Postgres")
 
 
 
 
 
-
+puts "Seeded Successfully"
 # Commenting out advanced exercises for the time being
 
 # Exercise.create!(name: "top grades",

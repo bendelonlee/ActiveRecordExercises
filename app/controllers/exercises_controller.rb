@@ -1,6 +1,6 @@
 class ExercisesController < ApplicationController
   def show
-    @exercise = Exercise.find(params[:id])
+    @exercise = Exercise.find(params[:id]).decorate
     @form_path = [@exercise, Solution.new]
   end
   def index

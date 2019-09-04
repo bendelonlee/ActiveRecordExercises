@@ -1,6 +1,6 @@
 class TimedBlocksController < ApplicationController
   def create
-    @exercise = Exercise.find(params[:exercise_id])
+    @exercise = Exercise.find(params[:exercise_id]).decorate
     TimedBlock.create(user: current_user, exercise: @exercise, expiration: 1.days.from_now, reason: :peeked)
     @show_answer = true
     @form_path = [@exercise, Solution.new]
