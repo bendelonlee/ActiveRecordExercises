@@ -14,6 +14,7 @@ describe 'exercise index page' do
     fill_in :solution_solution_code, with: ex3.solution
     click_on 'execute'
     expect(page).to have_content('Success!')
+    expect(page).to have_css("#answers-and-discussion")
     visit exercises_path
     within "#exercise-#{ex3.id}" do
       expect(page).to have_content "Completed 1 times"
