@@ -39,6 +39,10 @@ for more information: https://github.com/ankane/multiverse
 
 `$ bundle exec rspec`
 
+* Credits
+
+  - Database .png powered by https://dbdiagram.io/
+
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
