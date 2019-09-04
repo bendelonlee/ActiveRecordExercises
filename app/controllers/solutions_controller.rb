@@ -12,7 +12,7 @@ class SolutionsController < ApplicationController
     else
       flash[:message] = "Log in or sign up to run your code!"
     end
-    render "/exercises/show"    
+    render "/exercises/show"
   end
 
   private
@@ -20,7 +20,9 @@ class SolutionsController < ApplicationController
   def success
     @solution_results = true
     @correct_query = @solution.correct?
-    @exercise.mark_completed_by(current_user)
+    if(@correct_query)
+      @exercise.mark_completed_by(current_user)
+    end
   end
 
   def solution_params
