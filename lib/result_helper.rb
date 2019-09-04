@@ -20,6 +20,7 @@ module ResultHelper
   def result_as_table
     data = result.as_json
     h.haml_tag :table do
+      h.haml_tag :caption, table_name
       h.haml_tag :tr do
         data[0].keys.each do |heading|
           h.haml_tag :th, heading
@@ -33,5 +34,11 @@ module ResultHelper
         end
       end
     end
+  end
+
+  private
+
+  def table_name
+    result.class.to_s[/\w*/]
   end
 end
