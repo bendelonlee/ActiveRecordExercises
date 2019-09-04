@@ -20,6 +20,7 @@ class SolutionsController < ApplicationController
   def success
     @solution_results = true
     @correct_query = @solution.correct?
+    @show_answer = @correct_query
     if(@correct_query)
       @exercise.mark_completed_by(current_user)
     end
