@@ -1,15 +1,15 @@
 module ResultHelper
-
   def print_result
-    if result.is_a?(Integer) || result.is_a?(Array)
+    if result.is_a?(String) || result.is_a?(Array) || result.is_a?(Integer)
       return h.haml_tag :p, result
-    end
-    # Rescue block certainly not ideal. I wanted to do something like `result.is_a?(ActiveRecord_Relation)` but it was not working
-    begin
-      result.count
+    elsif result.is_a?(BigDecimal)
+      return h.haml_tag :p, result.to_i
+    elsif result.respond_to?(:id)
+      return result_as_ruby
+    elsif result.as_json.empty?
+      return h.haml_tag :p, result
+    else
       result_as_table
-    rescue
-      result_as_ruby
     end
   end
 
