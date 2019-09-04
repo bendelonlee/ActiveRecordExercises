@@ -1,7 +1,7 @@
-School::Enrollment.destroy_all
-School::Course.destroy_all
-School::Teacher.destroy_all
-School::Student.destroy_all
+Enrollment.destroy_all
+Course.destroy_all
+Teacher.destroy_all
+Student.destroy_all
 
 student_names =
 [
@@ -29,10 +29,11 @@ student_names =
 students = student_names.map.with_index do |name, i|
   {name: name, id: i + 1}
 end
-School::Student.import(students)
+
+Student.import(students)
 
 teacher_data = [
-['McGuffin', 333],
+['McGuffin', 303],
 ['Vandergrift', 245],
 ['Snape', 101],
 ['Sinistra', 707],
@@ -46,10 +47,11 @@ teacher_data = [
 teachers = teacher_data.map.with_index do |teacher, i|
   {id: i + 1, name: teacher[0], room_number: teacher[1]}
 end
-School::Teacher.import(teachers)
+
+Teacher.import(teachers)
 
 course_data = [
-   ['Wand Maintenence', 1, 100],
+   ['Wand Maintenance', 1, 100],
    ['Muggle Studies', 1, 100],
    ['Defence againt the Dark Arts', 2, 400],
    ['Potions', 3, 200],
@@ -62,10 +64,11 @@ course_data = [
    ['Flying', 10, 400],
    ['Charms', 1, 100]
 ]
+
 courses = course_data.map.with_index do |course, i|
   {id: i + 1, name: course[0], teacher_id: course[1], level: course[2]}
 end
-School::Course.import(courses)
+Course.import(courses)
 
 enrollment_data = [
    [1, 1, 60],
@@ -116,4 +119,5 @@ enrollment_data = [
 enrollments = enrollment_data.map.with_index do |enrollment, i|
   {id: i + 1, student_id: enrollment[0], course_id: enrollment[1], grade: enrollment[2]}
 end
-School::Enrollment.import(enrollments)
+
+Enrollment.import(enrollments)
