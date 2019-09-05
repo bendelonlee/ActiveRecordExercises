@@ -1,10 +1,9 @@
 class Exercise < ApplicationRecord
-  validates_presence_of :name, :solution, :instruction, :index
+  validates_presence_of :name, :solution, :instruction, :index, :level
   enum level: [:basic, :intermediate, :advanced]
   has_many :timed_blocks
 
   def self.minimum_index
-    # These methods would be improved with some form of caching as they rarely change
     minimum(:index)
   end
 
