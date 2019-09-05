@@ -31,7 +31,7 @@ Exercise.create!(name: "First student",
                 \n But when we use .first or .last, the SQL that's run looks more like this:
                 SELECT  \"students\".* FROM \"students\" ORDER BY \"students\".\"name\" ASC LIMIT $1 [[\"LIMIT\", 1]]
                 The `limit` means that only one object will be returned from the database, rather than all objects, which is more efficient.
-                \n Other possible solutions: `Student.order(name: :desc).last")
+                \n Other possible solutions: `Student.order(name: :desc).last`")
 
 Exercise.create!(name: "3 hardest courses",
                 level: :basic,
@@ -150,7 +150,7 @@ Exercise.create!(name: "Average grade in the course named Potions",
                 index: 20,
                 solution: "Course.select('avg(enrollments.grade) as av_grade').joins(:enrollments).group(:id).where(courses: {name: 'Potions'}).first.av_grade",
                 instruction: "Write a query that returns the average grade for all enrollments for the course named 'Potions'.",
-                notes: "av_grade is a hidden column.")
+                notes: "")
 
 Exercise.create!(name: "Count of each letter grade",
                 level: :advanced,
