@@ -1,5 +1,21 @@
 require "rails_helper"
 describe 'exercise index page' do
+  it 'shows exercises sorted by level' do
+    ex1 = create(:exercise, level: :basic)
+    ex2 = create(:exercise, level: :intermediate)
+    ex3 = create(:exercise, level: :advanced)
+
+    visit exercises_path
+    within('#basic-exercises') do
+      expect(page).to have_css("#exercise-#{ex1.id}")
+    end
+    within('#intermediate-exercises') do
+      expect(page).to have_css("#exercise-#{ex2.id}")
+    end
+    within('#advanced-exercises') do
+      expect(page).to have_css("#exercise-#{ex3.id}")
+    end
+  end
   it "shows me how many times I've completed an exercise, if I have completed it" do
     user_extra = create(:user)
     user = create(:user)
