@@ -1,6 +1,3 @@
-require 'factory_bot_rails'
-
-include FactoryBot::Syntax::Methods
 
 Completion.destroy_all
 TimedBlock.destroy_all
@@ -158,10 +155,6 @@ Exercise.create!(name: "Count of each letter grade",
                 solution: "Enrollment.select(\"count(id), CASE WHEN grade >= 90 THEN 'A' WHEN grade >= 80 THEN 'B' WHEN grade >= 70 THEN 'C' WHEN grade >= 60 THEN 'D' ELSE 'F' END as letter_grade\").group(:letter_grade).order('letter_grade ASC')",
                 instruction: "Write a query that returns an activerecord relation with a column called 'letter_grade' ('A' for grades above 90, 'B' for above 80 and so on) and a count of all enrollments whose grade falls within that letter grade.",
                 notes: "* CASE WHEN syntax is specific for Postgres")
-
-
-
-
 
 puts "Seeded Successfully"
 # Commenting out advanced exercises for the time being
