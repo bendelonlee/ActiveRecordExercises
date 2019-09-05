@@ -4,6 +4,8 @@ class ExercisesController < ApplicationController
     @form_path = [@exercise, Solution.new]
   end
   def index
-    @exercises = Exercise.all
+    @basic_exercises = Exercise.where(level: :basic)
+    @intermediate_exercises = Exercise.where(level: :intermediate)
+    @advanced_exercises = Exercise.where(level: :advanced)
   end
 end

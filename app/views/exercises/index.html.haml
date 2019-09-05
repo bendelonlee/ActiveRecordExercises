@@ -1,8 +1,20 @@
 %h1
   Exercises
-%ol
-  - @exercises.each do |exercise|
-    %li{:id => "exercise-#{exercise.id}"}
-      = link_to exercise.name, exercise_path(exercise)
-      - if current_user && current_user.completed?(exercise)
-        = "Completed #{current_user.times_completed(exercise)} times"
+
+#basic-exercises
+  %h3 Basic
+  %ol
+    - @basic_exercises.each do |exercise|
+      = render partial: "exercise_title", locals: {exercise: exercise}
+
+#intermediate-exercises
+  %h3 Intermediate
+  %ol{start: @basic_exercises.length + 1}
+    - @intermediate_exercises.each do |exercise|
+      = render partial: "exercise_title", locals: {exercise: exercise}
+
+#advanced-exercises
+  %h3 Advanced
+  %ol{start: @intermediate_exercises.length + @basic_exercises.length + 1}
+    - @advanced_exercises.each do |exercise|
+      = render partial: "exercise_title", locals: {exercise: exercise}
