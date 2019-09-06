@@ -1,11 +1,19 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description
+Active Record Exercises is a series of exercises designed to help people learning ActiveRecord, the ORM for Rails.  Users can attempt to complete exercises by running their ActiveRecord queries against our mock database. If stuck they can peek, though they won't be able to 'complete' the exercises for 24 hours. Encouraging users to come back a day later is intended to help them memorize and master ActiveRecord's particular syntax.
 
 ### Ruby version
 
 ruby 2.4.5p335 (2018-10-18 revision 65137) [x86_64-darwin18]
+
+# Contribution
+
+Is there an essential feature of ActiveRecord we've missed?
+Are you an ActiveRecord buff who'd like to concoct a challenging query?
+
+Submit these and other pull requests and issues here:
+
+https://github.com/bendelonlee/ActiveRecordExercises
 
 # Database set up
 
@@ -38,9 +46,3 @@ for more information on the multiverse gem: https://github.com/ankane/multiverse
   - Favicon credits:
 
   <a href="https://iconscout.com/icon/ruby-44" target="_blank">Ruby Icon</a> by <a href="https://iconscout.com/contributors/icon-mafia">Icon Mafia</a> on <a href="https://iconscout.com">Iconscout</a>
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
