@@ -37,7 +37,7 @@ describe 'exercise index page' do
     click_on 'execute'
     visit exercises_path
     within "#exercise-#{ex1.id}" do
-      expect(page).to have_content "Completed 1 times"
+      expect(page).to have_content "Completed 1 time"
     end
   end
 end
