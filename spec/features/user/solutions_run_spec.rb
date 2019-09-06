@@ -20,6 +20,8 @@ describe 'there are no errors' do
     "Course.select('courses.*, teachers.room_number').joins(:teacher).group('teachers.room_number', :id).order('teachers.room_number desc').limit(3)",
     "Student.select('students.*, count(enrollments.id) as course_count').joins(:enrollments).group(:id).order('course_count asc, students.name asc')",
     "Teacher.joins(courses: :enrollments).group(:id).having('max(enrollments.grade) < 90')",
+    "Student.select('students.*, count(courses.id) as advanced_course_count').joins(enrollments: :course).group(:id).order('advanced_course_count DESC').where('courses.level >= 200').limit(3)",
+    'Student.select(:name, "AVG(enrollments.grade) AS average_grade").joins(:enrollments).group(:id).having("AVG(enrollments.grade) > (SELECT AVG(grade) FROM enrollments)")',
     "Course.select('avg(enrollments.grade) as av_grade').joins(:enrollments).group(:id).where(courses: {name: 'Potions'}).first.av_grade",
     "Enrollment.select(\"count(id), CASE WHEN grade >= 90 THEN 'A' WHEN grade >= 80 THEN 'B' WHEN grade >= 70 THEN 'C' WHEN grade >= 60 THEN 'D' ELSE 'F' END as letter_grade\").group(:letter_grade).order('letter_grade ASC')",
   ]
