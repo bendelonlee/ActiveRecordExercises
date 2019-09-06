@@ -40,12 +40,12 @@ describe 'excercise show page' do
       visit exercise_path(exercise)
     end
     scenario 'a basic syntax error' do
-      @solution = "Student.where(price: 98"
+      @solution = "Student.where(name: 98"
       @error = "syntax error, unexpected end-of-input, expecting ')'"
     end
     scenario 'a column that does not exist' do
       @solution = "Student.where(dragon: 'puff')"
-      @error = "ERROR: column students.dragon does not exist"
+      @error = "Security : Only activerecord queries will be executed : `dragon` not permitted"
     end
     after(:each) do
       fill_in :solution_solution_code, with: @solution
@@ -83,7 +83,7 @@ describe 'excercise show page' do
       @error = "Only activerecord queries will be executed : `binding`, `pry` not permitted"
     end
     it "such as `create`" do
-      fill_in :solution_solution_code, with: "Student.create(name: 'Mr. Robot')"
+      fill_in :solution_solution_code, with: "Student.create(name: 'MrRobot')"
       @error = "Only activerecord queries will be executed : `create` not permitted"
     end
     scenario "such as `destroy_all`" do

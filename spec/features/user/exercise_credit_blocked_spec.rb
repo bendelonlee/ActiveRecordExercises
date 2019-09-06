@@ -1,6 +1,6 @@
 require "rails_helper"
 describe 'exercise index page' do
-  it 'when I peak at an exercise, this is indicated. I am not able to get credit for completing it until 24 hours pass.' do
+  it 'when I peek at an exercise, this is indicated. I am not able to get credit for completing it until 24 hours pass.' do
     extra_user = create(:user)
     ex1 = create(:exercise, index: 1)
     TimedBlock.create(user: extra_user, exercise: ex1, expiration: 2.days.from_now )
