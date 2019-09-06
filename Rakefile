@@ -4,3 +4,10 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+namespace :db do
+  task seed_exercises: :environment do
+    load './db/seed_exercises.rb'
+    puts "Exercises Seeded Successfully!"
+  end
+end
