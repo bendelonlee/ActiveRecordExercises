@@ -20,7 +20,7 @@ describe 'exercise index page' do
     end
     visit exercises_path
     within "#exercise-#{ex3.id}" do
-      expect(page).to have_content "Completed 1 times"
+      expect(page).to have_content "Completed 1 time"
     end
   end
   it 'when I execute an incorrect solution, it is not marked as complete' do

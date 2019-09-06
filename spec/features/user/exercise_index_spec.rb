@@ -31,7 +31,7 @@ describe 'exercise index page' do
     end
     within("#exercise-#{ex2.id}") do
       expect(page).to have_link(ex2.name, href: exercise_path(ex2))
-      expect(page).to have_content("Completed 1 times")
+      expect(page).to have_content("Completed 1 time")
     end
     within("#exercise-#{ex3.id}") do
       expect(page).to have_link(ex3.name, href: exercise_path(ex3))

@@ -1,4 +1,4 @@
 %li{:id => "exercise-#{exercise.id}"}
   = link_to exercise.name, exercise_path(exercise)
   - if current_user && current_user.completed?(exercise)
-    = "Completed #{current_user.times_completed(exercise)} times"
+    = "Completed " + pluralize(current_user.times_completed(exercise), 'time')
