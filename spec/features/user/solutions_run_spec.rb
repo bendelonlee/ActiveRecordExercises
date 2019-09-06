@@ -10,7 +10,7 @@ describe 'there are no errors' do
     "Enrollment.where('grade >= 60')",
     "Enrollment.where('grade < 60').count",
     "Enrollment.where(student_id: [1])",
-    "Enrollment.where(course_id: [1, 9])",
+    "Course.where(teacher_id: [1, 9])",
     "Course.joins(:enrollments).group(:id).order('count(enrollments) desc')",
     "Course.order(level: :asc).limit(3).pluck(:name)",
     "Student.joins(enrollments: :course).where(courses: {name: 'Rails Magic'})",

@@ -51,7 +51,7 @@
 
 - unless @show_answer
   %p
-    = button_to('', surrender_path(@exercise), {id: 'surrender-button', data: {confirm: "Choosing to look at our answer means you won't be able to get credit for completing this exercise for another 24 hours. Are you sure you want to peak?"}})
+    = button_to('', surrender_path(@exercise), {id: 'surrender-button', data: {confirm: "Choosing to look at our answer means you won't be able to get credit for completing this exercise for another 24 hours. Are you sure you want to peek?"}})
 
 - if @show_answer
   #answers-and-discussion
