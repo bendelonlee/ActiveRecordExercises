@@ -10,6 +10,6 @@ describe QueryScanner do
   it '.keywords' do
     qs = QueryScanner.new
     qs.scan("Student.where(dragon: 'puff')")
-    expect(qs.send(:keywords)).to eq(%w(Student where dragon))
+    expect(qs.send(:keywords)).to eq(%w(student where dragon))
   end
 end
