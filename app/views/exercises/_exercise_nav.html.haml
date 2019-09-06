@@ -1,0 +1,8 @@
+.exercise-nav
+  = link_to("All Exercises", exercises_path)
+  - if @exercise.index > Exercise.minimum_index
+    |
+    = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
+  |
+  - if @exercise.index < Exercise.maximum_index
+    = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))

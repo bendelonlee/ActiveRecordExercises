@@ -1,11 +1,5 @@
 #top-exercise-nav
-  = link_to("All Exercises", exercises_path)
-  - if @exercise.index > Exercise.minimum_index
-    |
-    = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
-  |
-  - if @exercise.index < Exercise.maximum_index
-    = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))
+  = render partial: 'exercises/exercise_nav', locals: {exercise: @exercise}
 
 = image_tag(asset_path('school_tables.jpg'), id: 'db-tables')
 
@@ -63,10 +57,4 @@
       = @exercise.notes
     %br
 
-
-#bottom-exercise-nav
-  - if @exercise.index > Exercise.minimum_index
-    = link_to("Previous Exercise", exercise_path(Exercise.find_by(index: @exercise.index - 1)))
-  |
-  - if @exercise.index < Exercise.maximum_index
-    = link_to("Next Exercise", exercise_path(Exercise.find_by(index: @exercise.index + 1)))
+= render partial: 'exercises/exercise_nav', locals: {exercise: @exercise}
