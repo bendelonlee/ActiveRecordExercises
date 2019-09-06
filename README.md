@@ -7,33 +7,26 @@ application up and running.
 
 ruby 2.4.5p335 (2018-10-18 revision 65137) [x86_64-darwin18]
 
+# Database set up
 
-* System dependencies
+Databases are Postgresql. The multiverse gem is used so that the main app is in a separate database from the one the user runs queries on.
 
-* Configuration
+To set up app databases run:
 
-* Database set up
-App database is set up as expected:
+```
+rails db:{create,migrate,seed,test:prepare}
+```
 
-`$ rails db:create`
-`$ rails db:migrate`
-`$ rails db:seed`
+`test:prepare` is necessary because of the way rspec and multiverse interact.
 
-Extra prefix for the mock database:
+You'll also need to set up the 'school' database, the one that the user runs queries on:
 
-`$ DB=school rails db:create`
-`$ DB=school rails db:migrate`
-`$ DB=school rails db:seed`
-`$ DB=school rails db:test:prepare`
-
+`$ DB=school rails db:{create,migrate,seed,test:prepare}`
 
 Because the some exercises are id specific, you can't run `$ DB=school rails db:seed` by itself.
 Instead run `$ DB=school rails db:{drop,create,migrate,seed,test:prepare}`
 
-
-
-for more information: https://github.com/ankane/multiverse
-
+for more information on the multiverse gem: https://github.com/ankane/multiverse
 
 * Running the test suite
 
